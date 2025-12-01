@@ -5,7 +5,7 @@ Next.js (App Router) + Tailwind, built for static export and hosted on GitHub Pa
 ## Getting started
 1. Install deps: `npm install`
 2. Run dev server: `npm run dev` (localhost:3000)
-3. Static export: `npm run build && npm run export` (outputs to `out/`)
+3. Static export: `npm run build` (outputs to `out/` because `output: "export"` is set)
 
 ## Deploying to GitHub Pages
 - This repo keeps source on `main` and serves `out/` from `gh-pages`.
@@ -16,7 +16,7 @@ Next.js (App Router) + Tailwind, built for static export and hosted on GitHub Pa
 bash scripts/deploy-gh-pages.sh
 ```
 - Optional commit message: `bash scripts/deploy-gh-pages.sh "Deploy message"`
-- Script does: `npm run build && npm run export`, ensures an `out/` worktree on `gh-pages`, commits, and pushes. Remove the worktree later with `git worktree remove out`.
+- Script does: `npm run build` (static export via `output: "export"`), ensures an `out/` worktree on `gh-pages`, commits, and pushes. Remove the worktree later with `git worktree remove out`.
 
 
 ## Tech
