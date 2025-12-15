@@ -22,3 +22,4 @@ bash scripts/deploy-gh-pages.sh
 ## Tech
 - Next.js 14 (App Router) with `output: "export"` and `images.unoptimized` for static builds.
 - Tailwind CSS with Space Grotesk (headings) and Inter (body) plus a tech-minimal palette.
+- Google Analytics via the global site tag; override the default property by setting `NEXT_PUBLIC_GA_ID`.
