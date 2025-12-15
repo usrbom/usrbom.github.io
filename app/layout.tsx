@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -18,6 +19,9 @@ export const metadata: Metadata = {
     "Product-minded builder at the intersection of AI, design, and systems.",
 };
 
+// Prefer env-provided ID but default to the site's GA property so analytics is always wired
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-0KN3K9DJTF";
+
 export default function RootLayout({
   children,
 }: {
@@ -28,6 +32,9 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} bg-pale-gray font-body text-charcoal antialiased`}
       >
+        {GA_MEASUREMENT_ID ? (
+          <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
+        ) : null}
         {children}
       </body>
     </html>
