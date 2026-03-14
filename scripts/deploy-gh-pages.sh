@@ -29,8 +29,8 @@ rm -rf "$TMP_EXPORT_DIR"
 mv "$BUILD_DIR" "$TMP_EXPORT_DIR"
 
 echo ">>> Preparing worktree at $BUILD_DIR for $BRANCH"
-# Clean existing out/ if it's not a worktree
-if [ ! -d "$BUILD_DIR/.git" ] && [ -d "$BUILD_DIR" ]; then
+# Clean existing out/ only if it is not a git worktree. In a worktree, .git is a file.
+if [ ! -e "$BUILD_DIR/.git" ] && [ -d "$BUILD_DIR" ]; then
   echo ">>> Removing stale $BUILD_DIR"
   rm -rf "$BUILD_DIR"
 fi
@@ -41,6 +41,11 @@ if ! git worktree list --porcelain | grep -q "worktree $BUILD_DIR"; then
     || git worktree add --force -B "$BRANCH" "$BUILD_DIR" HEAD
 fi
 
+if [ ! -e "$BUILD_DIR/.git" ]; then
+  echo "Expected a git worktree at $BUILD_DIR, but no .git file was found."
+  exit 1
+fi
+
 echo ">>> Ensuring branch $BRANCH is checked out in worktree"
 git -C "$BUILD_DIR" checkout -B "$BRANCH" >/dev/null 2>&1
 git -C "$BUILD_DIR" reset --hard "origin/$BRANCH" >/dev/null 2>&1 || true
@@ -49,21 +54,19 @@ echo ">>> Syncing export into worktree"
 rsync -a --delete "$TMP_EXPORT_DIR"/ "$BUILD_DIR"/
 rm -rf "$TMP_EXPORT_DIR"
 
-cd "$BUILD_DIR"
-
 COMMIT_MSG=${1:-"Deploy $(date -u +"%Y-%m-%dT%H:%M:%SZ")"}
 
 echo ">>> Committing static files..."
 # The gh-pages worktree lives at repo-root/out, which is ignored by the source repo's
 # .gitignore. Force-add so exported files inside the worktree are staged reliably.
-git add -A -f
-if git diff --cached --quiet; then
+git -C "$BUILD_DIR" add -A -f
+if git -C "$BUILD_DIR" diff --cached --quiet; then
   echo "Nothing to commit; deploy skipped."
   exit 0
 fi
-git commit -m "$COMMIT_MSG"
+git -C "$BUILD_DIR" commit -m "$COMMIT_MSG"
 
 echo ">>> Pushing to origin/$BRANCH..."
-git push origin "$BRANCH"
+git -C "$BUILD_DIR" push origin "$BRANCH"
 
 echo ">>> Done. You can remove the worktree with: git worktree remove $BUILD_DIR"
