@@ -26,6 +26,7 @@ Next.js (App Router) + Tailwind, built for static export and hosted on GitHub Pa
 bash scripts/deploy-gh-pages.sh
 ```
 - Optional commit message: `bash scripts/deploy-gh-pages.sh "Deploy message"`
+- Default deploy commit format: `Deploy: <latest main commit summary> (<UTC timestamp>)`
 - Script does: runs `bash scripts/validate-release.sh` from `main`, ensures a `.gh-pages-tmp/` worktree on `gh-pages`, syncs the static export from `out/`, commits, and pushes. Remove the worktree later with `git worktree remove .gh-pages-tmp`.
 
 ### Deploy notes

@@ -38,6 +38,8 @@
 - Fonts are loaded in [`app/layout.tsx`](/Users/utkarshrawat/Documents/code/usrbom.github.io/app/layout.tsx) with `next/font/google`.
 - Keep components mostly presentational and colocate simple content arrays with the section component unless there is a clear reason to extract shared data.
 - Client components should be used only where browser APIs or event handlers are needed. Current example: [`components/Navbar.tsx`](/Users/utkarshrawat/Documents/code/usrbom.github.io/components/Navbar.tsx).
+- For normal source commits, prefer concise summary-style commit messages that describe the change directly, for example `Update hosted resume PDF`. Let the user override the message if they want a different wording.
+- For GitHub Pages deploy commits, prefer `Deploy: <summary> (<UTC timestamp>)` by default. The deploy script supports overriding this by passing a custom message argument.
 
 ## Architectural guardrails
 - Preserve static-export compatibility. Do not introduce server-only features, runtime image optimization, or behavior that requires a Node server at runtime unless explicitly requested.

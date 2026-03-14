@@ -46,7 +46,8 @@ git -C "$WORKTREE_DIR" reset --hard "origin/$BRANCH" >/dev/null 2>&1 || true
 echo ">>> Syncing export into worktree"
 rsync -a --delete --exclude='.git' "$BUILD_DIR"/ "$WORKTREE_DIR"/
 
-COMMIT_MSG=${1:-"Deploy $(date -u +"%Y-%m-%dT%H:%M:%SZ")"}
+DEFAULT_SUMMARY="$(git log -1 --pretty=%s HEAD | sed -E 's/"/\\"/g')"
+COMMIT_MSG=${1:-"Deploy: ${DEFAULT_SUMMARY} ($(date -u +"%Y-%m-%dT%H:%M:%SZ"))"}
 
 echo ">>> Committing static files..."
 # The gh-pages worktree lives under .gh-pages-tmp, but force-add keeps staging behavior

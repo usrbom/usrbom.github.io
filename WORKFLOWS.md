@@ -27,7 +27,8 @@ The agent should:
 2. Create or switch to `scratch/<feature-name>` using `bash scripts/start-feature.sh "<feature name>"`.
 3. Implement the work on that scratch branch.
 4. Run `npm run lint` and `npm run build`.
-5. Summarize what changed, what to test locally, and any open risks.
+5. Use a concise default commit message that summarizes the change if a commit is requested, unless the user supplies their own wording.
+6. Summarize what changed, what to test locally, and any open risks.
 
 ### `Revise current feature`
 The agent should continue on the active `scratch/<feature-name>` branch, preserve the agreed scope unless told otherwise, and rerun validation before handing work back.
@@ -37,7 +38,8 @@ The agent should:
 1. Verify the current branch is `main`.
 2. Run `bash scripts/validate-release.sh`.
 3. If validation passes, deploy with `bash scripts/deploy-gh-pages.sh`.
-4. Report the deploy commit message and any follow-up verification steps.
+4. Use the default deploy message format `Deploy: <summary> (<UTC timestamp>)` unless the user passes a custom deploy message.
+5. Report the deploy commit message and any follow-up verification steps.
 
 ## Development flow
 1. Plan the feature with the intake checklist.
@@ -70,3 +72,4 @@ The agent should:
 - Start a feature branch: `bash scripts/start-feature.sh "<feature name>"`
 - Validate the production release path: `bash scripts/validate-release.sh`
 - Deploy `main` to GitHub Pages: `bash scripts/deploy-gh-pages.sh`
+- Deploy `main` with a custom message override: `bash scripts/deploy-gh-pages.sh "Your custom deploy message"`
