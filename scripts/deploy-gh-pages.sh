@@ -9,11 +9,19 @@ BRANCH="gh-pages"
 
 cd "$REPO_ROOT"
 
+echo ">>> Validating release path from main"
+bash "$SCRIPT_DIR/validate-release.sh"
+
 echo ">>> Pruning stale worktrees"
 git worktree prune >/dev/null 2>&1 || true
 
-echo ">>> Building static export..."
-npm run build >/dev/null
+echo ">>> Fetching $BRANCH"
+git fetch origin "$BRANCH" >/dev/null 2>&1 || true
+
+if [ ! -d "$BUILD_DIR" ]; then
+  echo "Build output not found at $BUILD_DIR. Ensure next.config.js has output: \"export\"."
+  exit 1
+fi
 
 # Move build output aside so we can place a worktree at $BUILD_DIR
 echo ">>> Staging export to $TMP_EXPORT_DIR"
@@ -29,11 +37,13 @@ fi
 
 # Ensure worktree exists (create branch from current HEAD if needed)
 if ! git worktree list --porcelain | grep -q "worktree $BUILD_DIR"; then
-  git worktree add --force -B "$BRANCH" "$BUILD_DIR" HEAD
+  git worktree add --force -B "$BRANCH" "$BUILD_DIR" "origin/$BRANCH" 2>/dev/null \
+    || git worktree add --force -B "$BRANCH" "$BUILD_DIR" HEAD
 fi
 
 echo ">>> Ensuring branch $BRANCH is checked out in worktree"
 git -C "$BUILD_DIR" checkout -B "$BRANCH" >/dev/null 2>&1
+git -C "$BUILD_DIR" reset --hard "origin/$BRANCH" >/dev/null 2>&1 || true
 
 echo ">>> Syncing export into worktree"
 rsync -a --delete "$TMP_EXPORT_DIR"/ "$BUILD_DIR"/
@@ -44,7 +54,7 @@ cd "$BUILD_DIR"
 COMMIT_MSG=${1:-"Deploy $(date -u +"%Y-%m-%dT%H:%M:%SZ")"}
 
 echo ">>> Committing static files..."
-git add -f .
+git add -A
 if git diff --cached --quiet; then
   echo "Nothing to commit; deploy skipped."
   exit 0

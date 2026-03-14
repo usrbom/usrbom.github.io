@@ -11,12 +11,20 @@ Next.js (App Router) + Tailwind, built for static export and hosted on GitHub Pa
 - This repo keeps source on `main` and serves `out/` from `gh-pages`.
 - The `CNAME` file lives in `public/` so it is included in the export.
 
+### Release checklist
+1. Finish feature work on a `scratch/<feature-name>` branch.
+2. Review locally with `npm run dev`.
+3. Merge the approved scratch branch into `main`.
+4. Switch to `main`.
+5. Run `bash scripts/validate-release.sh`.
+6. Deploy with `bash scripts/deploy-gh-pages.sh`.
+
 ### One-line deploy (recommended)
 ```bash
 bash scripts/deploy-gh-pages.sh
 ```
 - Optional commit message: `bash scripts/deploy-gh-pages.sh "Deploy message"`
-- Script does: `npm run build` (static export via `output: "export"`), ensures an `out/` worktree on `gh-pages`, commits, and pushes. Remove the worktree later with `git worktree remove out`.
+- Script does: runs `bash scripts/validate-release.sh` from `main`, ensures an `out/` worktree on `gh-pages`, syncs the static export, commits, and pushes. Remove the worktree later with `git worktree remove out`.
 
 
 ## Tech
