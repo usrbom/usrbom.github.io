@@ -4,6 +4,7 @@
 - Personal portfolio site built with Next.js 14 App Router, React 18, TypeScript, and Tailwind CSS.
 - The site is configured for static export via `output: "export"` in [`next.config.js`](/Users/utkarshrawat/Documents/code/usrbom.github.io/next.config.js).
 - Deployment targets GitHub Pages. Static output is generated into `out/`, and the repo includes a deploy script for pushing that output to `gh-pages`.
+- The deploy script publishes from `out/` into a dedicated `.gh-pages-tmp/` worktree. Do not reuse `out/` itself as a git worktree.
 - Follow [`WORKFLOWS.md`](/Users/utkarshrawat/Documents/code/usrbom.github.io/WORKFLOWS.md) for the standard feature intake, scratch-branch implementation, validation, and deployment process.
 
 ## Important directories
@@ -13,7 +14,7 @@
 - [`scripts`](/Users/utkarshrawat/Documents/code/usrbom.github.io/scripts): Deployment automation. Currently only [`deploy-gh-pages.sh`](/Users/utkarshrawat/Documents/code/usrbom.github.io/scripts/deploy-gh-pages.sh).
 - [`out`](/Users/utkarshrawat/Documents/code/usrbom.github.io/out): Generated static export. Treat as build output.
 - [`.next`](/Users/utkarshrawat/Documents/code/usrbom.github.io/.next): Next.js build cache/output. Treat as generated.
-- [`.gh-pages-tmp`](/Users/utkarshrawat/Documents/code/usrbom.github.io/.gh-pages-tmp): Deployment/worktree artifact present in this checkout; treat as generated and verify before touching.
+- [`.gh-pages-tmp`](/Users/utkarshrawat/Documents/code/usrbom.github.io/.gh-pages-tmp): Dedicated `gh-pages` git worktree used only during deploys. Treat as generated deployment state.
 
 ## Setup and run commands
 - Install dependencies: `npm install`
@@ -41,6 +42,8 @@
 ## Architectural guardrails
 - Preserve static-export compatibility. Do not introduce server-only features, runtime image optimization, or behavior that requires a Node server at runtime unless explicitly requested.
 - Keep `next.config.js` compatible with GitHub Pages export. `output: "export"` and `images.unoptimized` are intentional.
+- Keep `out/` as plain build output. Do not convert it into a git worktree or sync a worktree over it.
+- The deploy path depends on `.gh-pages-tmp/.git` surviving the export sync. If you change the deploy script, preserve that file explicitly.
 - Preserve static assets needed for Pages hosting, especially [`public/CNAME`](/Users/utkarshrawat/Documents/code/usrbom.github.io/public/CNAME) and [`public/.nojekyll`](/Users/utkarshrawat/Documents/code/usrbom.github.io/public/.nojekyll).
 - Analytics is injected globally through [`components/GoogleAnalytics.tsx`](/Users/utkarshrawat/Documents/code/usrbom.github.io/components/GoogleAnalytics.tsx) and `NEXT_PUBLIC_GA_ID`; avoid breaking the env override path.
 - Favor simple static content and client-light interactions. This repo is a single-page portfolio, not a full app shell.
@@ -58,6 +61,11 @@
 - Visual/theme update: prefer Tailwind token changes in [`tailwind.config.js`](/Users/utkarshrawat/Documents/code/usrbom.github.io/tailwind.config.js) and shared CSS changes in [`app/globals.css`](/Users/utkarshrawat/Documents/code/usrbom.github.io/app/globals.css).
 - Asset update: place files in [`public`](/Users/utkarshrawat/Documents/code/usrbom.github.io/public) and reference them with root-relative paths.
 - Release/deploy: run `npm run build`, then `bash scripts/deploy-gh-pages.sh`.
+
+## Deploy pitfalls to remember
+- If a deploy ever appears to commit on `main` instead of `gh-pages`, stop immediately and inspect whether `.gh-pages-tmp/.git` still exists.
+- If `npm run lint` or `npm run build` fails with `next: command not found`, dependencies are not installed in the current checkout. Run `npm install` before continuing.
+- A clean successful deploy should create a commit on `gh-pages`, not on `main`.
 
 ## Done criteria
 - Changes preserve static export behavior.

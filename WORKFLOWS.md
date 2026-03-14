@@ -54,7 +54,17 @@ The agent should:
 - Release validation must run `npm run lint` and `npm run build` every time.
 - If the source repo has uncommitted changes during release validation, the workflow should warn and ask whether to continue.
 - Do not edit generated output in `out/` manually as part of feature work.
+- `out/` is build output only. The deploy script uses `.gh-pages-tmp/` as the dedicated `gh-pages` worktree.
 - Use [`scripts/deploy-gh-pages.sh`](/Users/utkarshrawat/Documents/code/usrbom.github.io/scripts/deploy-gh-pages.sh) as the single production deploy path.
+
+## Deploy troubleshooting
+- If a deploy seems to stage or commit files on `main`, stop. Check whether `.gh-pages-tmp/.git` exists and whether the deploy script is syncing into `.gh-pages-tmp/`, not `out/`.
+- If `npm run lint` or `npm run build` cannot find `next`, reinstall dependencies with `npm install`.
+- A normal successful deploy should:
+- validate on `main`
+- build into `out/`
+- commit on `gh-pages`
+- push `origin/gh-pages`
 
 ## Helper scripts
 - Start a feature branch: `bash scripts/start-feature.sh "<feature name>"`

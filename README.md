@@ -8,7 +8,9 @@ Next.js (App Router) + Tailwind, built for static export and hosted on GitHub Pa
 3. Static export: `npm run build` (outputs to `out/` because `output: "export"` is set)
 
 ## Deploying to GitHub Pages
-- This repo keeps source on `main` and serves `out/` from `gh-pages`.
+- This repo keeps source on `main` and publishes static output to `gh-pages`.
+- `out/` is build output only.
+- `.gh-pages-tmp/` is the dedicated local git worktree used for `gh-pages` deploys.
 - The `CNAME` file lives in `public/` so it is included in the export.
 
 ### Release checklist
@@ -24,7 +26,12 @@ Next.js (App Router) + Tailwind, built for static export and hosted on GitHub Pa
 bash scripts/deploy-gh-pages.sh
 ```
 - Optional commit message: `bash scripts/deploy-gh-pages.sh "Deploy message"`
-- Script does: runs `bash scripts/validate-release.sh` from `main`, ensures an `out/` worktree on `gh-pages`, syncs the static export, commits, and pushes. Remove the worktree later with `git worktree remove out`.
+- Script does: runs `bash scripts/validate-release.sh` from `main`, ensures a `.gh-pages-tmp/` worktree on `gh-pages`, syncs the static export from `out/`, commits, and pushes. Remove the worktree later with `git worktree remove .gh-pages-tmp`.
+
+### Deploy notes
+- Do not turn `out/` into a git worktree. It must remain plain build output.
+- The deploy script must preserve `.gh-pages-tmp/.git` during sync. Deleting that file causes git commands to fall back to the parent `main` repo.
+- If `npm run lint` fails with `next: command not found`, reinstall dependencies with `npm install` before deploying.
 
 
 ## Tech
