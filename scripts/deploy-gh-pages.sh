@@ -4,7 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 BUILD_DIR="$REPO_ROOT/out"
-TMP_EXPORT_DIR="$REPO_ROOT/.out-tmp"
+WORKTREE_DIR="$REPO_ROOT/.gh-pages-tmp"
 BRANCH="gh-pages"
 
 cd "$REPO_ROOT"
@@ -23,50 +23,42 @@ if [ ! -d "$BUILD_DIR" ]; then
   exit 1
 fi
 
-# Move build output aside so we can place a worktree at $BUILD_DIR
-echo ">>> Staging export to $TMP_EXPORT_DIR"
-rm -rf "$TMP_EXPORT_DIR"
-mv "$BUILD_DIR" "$TMP_EXPORT_DIR"
-
-echo ">>> Preparing worktree at $BUILD_DIR for $BRANCH"
-# Clean existing out/ only if it is not a git worktree. In a worktree, .git is a file.
-if [ ! -e "$BUILD_DIR/.git" ] && [ -d "$BUILD_DIR" ]; then
-  echo ">>> Removing stale $BUILD_DIR"
-  rm -rf "$BUILD_DIR"
+echo ">>> Preparing worktree at $WORKTREE_DIR for $BRANCH"
+if [ -d "$WORKTREE_DIR" ] && [ ! -e "$WORKTREE_DIR/.git" ]; then
+  echo ">>> Removing stale $WORKTREE_DIR"
+  rm -rf "$WORKTREE_DIR"
 fi
 
-# Ensure worktree exists (create branch from current HEAD if needed)
-if ! git worktree list --porcelain | grep -q "worktree $BUILD_DIR"; then
-  git worktree add --force -B "$BRANCH" "$BUILD_DIR" "origin/$BRANCH" 2>/dev/null \
-    || git worktree add --force -B "$BRANCH" "$BUILD_DIR" HEAD
+if ! git worktree list --porcelain | grep -q "worktree $WORKTREE_DIR"; then
+  git worktree add --force -B "$BRANCH" "$WORKTREE_DIR" "origin/$BRANCH" 2>/dev/null \
+    || git worktree add --force -B "$BRANCH" "$WORKTREE_DIR" HEAD
 fi
 
-if [ ! -e "$BUILD_DIR/.git" ]; then
-  echo "Expected a git worktree at $BUILD_DIR, but no .git file was found."
+if [ ! -e "$WORKTREE_DIR/.git" ]; then
+  echo "Expected a git worktree at $WORKTREE_DIR, but no .git file was found."
   exit 1
 fi
 
 echo ">>> Ensuring branch $BRANCH is checked out in worktree"
-git -C "$BUILD_DIR" checkout -B "$BRANCH" >/dev/null 2>&1
-git -C "$BUILD_DIR" reset --hard "origin/$BRANCH" >/dev/null 2>&1 || true
+git -C "$WORKTREE_DIR" checkout -B "$BRANCH" >/dev/null 2>&1
+git -C "$WORKTREE_DIR" reset --hard "origin/$BRANCH" >/dev/null 2>&1 || true
 
 echo ">>> Syncing export into worktree"
-rsync -a --delete "$TMP_EXPORT_DIR"/ "$BUILD_DIR"/
-rm -rf "$TMP_EXPORT_DIR"
+rsync -a --delete --exclude='.git' "$BUILD_DIR"/ "$WORKTREE_DIR"/
 
 COMMIT_MSG=${1:-"Deploy $(date -u +"%Y-%m-%dT%H:%M:%SZ")"}
 
 echo ">>> Committing static files..."
-# The gh-pages worktree lives at repo-root/out, which is ignored by the source repo's
+# The gh-pages worktree lives under .gh-pages-tmp, but force-add keeps staging behavior
 # .gitignore. Force-add so exported files inside the worktree are staged reliably.
-git -C "$BUILD_DIR" add -A -f
-if git -C "$BUILD_DIR" diff --cached --quiet; then
+git -C "$WORKTREE_DIR" add -A -f
+if git -C "$WORKTREE_DIR" diff --cached --quiet; then
   echo "Nothing to commit; deploy skipped."
   exit 0
 fi
-git -C "$BUILD_DIR" commit -m "$COMMIT_MSG"
+git -C "$WORKTREE_DIR" commit -m "$COMMIT_MSG"
 
 echo ">>> Pushing to origin/$BRANCH..."
-git -C "$BUILD_DIR" push origin "$BRANCH"
+git -C "$WORKTREE_DIR" push origin "$BRANCH"
 
-echo ">>> Done. You can remove the worktree with: git worktree remove $BUILD_DIR"
+echo ">>> Done. You can remove the worktree with: git worktree remove $WORKTREE_DIR"
