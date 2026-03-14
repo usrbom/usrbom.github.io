@@ -54,7 +54,9 @@ cd "$BUILD_DIR"
 COMMIT_MSG=${1:-"Deploy $(date -u +"%Y-%m-%dT%H:%M:%SZ")"}
 
 echo ">>> Committing static files..."
-git add -A
+# The gh-pages worktree lives at repo-root/out, which is ignored by the source repo's
+# .gitignore. Force-add so exported files inside the worktree are staged reliably.
+git add -A -f
 if git diff --cached --quiet; then
   echo "Nothing to commit; deploy skipped."
   exit 0
