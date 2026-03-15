@@ -1,6 +1,6 @@
 const projects = [
   {
-    title: "Penny — AI Insights Engine for PNC",
+    title: "Penny : AI Insights Engine for PNC",
     role: "Product lead, Tech Innovation Challenge",
     timeframe: "2025",
     summary:
@@ -24,7 +24,7 @@ const projects = [
     tags: ["Healthcare", "Workflow Design", "Research", "Hackathon"],
   },
   {
-    title: "Neo Health Assistant — AI Chatbot for Student Well-Being",
+    title: "Neo Health Assistant : AI Chatbot for Student Well-Being",
     role: "Developer / conversational AI prototype",
     timeframe: "2018",
     summary:

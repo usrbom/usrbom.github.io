@@ -37,7 +37,7 @@ const timeline: Milestone[] = [
   },
   {
     year: "2025",
-    title: "Penny — AI Insights Engine",
+    title: "Penny, AI Insights Engine",
     description:
       "Designed Penny, an AI-driven insights engine for highly regulated Banking industry to enhance product discovery for PNC, earning 1st place among 50 MBA teams across top 16 business schools at the Tepper Tech Innovation Challenge.",
   },

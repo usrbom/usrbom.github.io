@@ -10,7 +10,7 @@ export default function Hero() {
           Builder-first mindset
         </div>
         <h1 className="font-heading text-3xl leading-tight tracking-tight text-charcoal md:text-4xl lg:text-5xl">
-          Hi, I&apos;m Utkarsh — a customer-focused builder crafting products at the intersection of <span className="text-accent"> technology, data and design.</span>
+          Hi, I&apos;m Utkarsh, a customer-focused builder crafting products at the intersection of <span className="text-accent"> technology, data and design.</span>
         </h1>
         <p className="max-w-2xl text-base leading-relaxed text-charcoal/80">
         UCLA Anderson MBA candidate focused on Technology Leadership & Product Management. Previously a Senior Software Engineer at ServiceNow, 
