@@ -1,0 +1,405 @@
+export type ArticleCategory = "AI" | "Product Thinking" | "Personal Notes";
+
+export type ArticleContentBlock =
+  | {
+      type: "paragraph";
+      text: string;
+    }
+  | {
+      type: "heading";
+      text: string;
+    }
+  | {
+      type: "list";
+      items: string[];
+    }
+  | {
+      type: "quote";
+      text: string;
+    };
+
+export type Article = {
+  slug: string;
+  title: string;
+  summary: string;
+  category: ArticleCategory;
+  publishedAt: string;
+  readingTime: string;
+  content: ArticleContentBlock[];
+  image?: {
+    src: string;
+    alt: string;
+    caption?: string;
+  };
+  images?: Array<{
+    src: string;
+    alt: string;
+    caption?: string;
+  }>;
+};
+
+const articles: Article[] = [
+  {
+    slug: "starting-my-mba-journey-at-ucla-anderson",
+    title: "Starting My MBA Journey at UCLA Anderson",
+    summary:
+      "Reflections from my first quarter in UCLA Anderson’s Full-Time MBA program, from challenge-course teamwork to product development and tech strategy coursework.",
+    category: "Personal Notes",
+    publishedAt: "2025-09-06",
+    readingTime: "3 min read",
+    images: [
+      {
+        src: "/mba_1.jpeg",
+        alt: "Moments from the beginning of my MBA journey at UCLA Anderson.",
+      },
+      {
+        src: "/mba_2.jpeg",
+        alt: "Scenes from early UCLA Anderson MBA experiences and campus life.",
+      },
+      {
+        src: "/mba_3.jpeg",
+        alt: "Highlights from the first month of the UCLA Anderson MBA program.",
+      },
+    ],
+    content: [
+      {
+        type: "paragraph",
+        text: "I recently began a new chapter as part of the Full-Time MBA Program at UCLA Anderson School of Management in Los Angeles.",
+      },
+      {
+        type: "paragraph",
+        text: "After six years of software development at ServiceNow, I decided to step outside my comfort zone to better understand how technology can be leveraged to solve consumer problems, meet business needs, and shape better products. I’m deeply grateful for the support of my family, mentors, colleagues, and friends who helped make this transition possible.",
+      },
+      {
+        type: "paragraph",
+        text: "It has been just over a month, and a few experiences already stand out:",
+      },
+      {
+        type: "heading",
+        text: "1. Challenge Course activities",
+      },
+      {
+        type: "paragraph",
+        text: "Exercises that pushed me outside my limits and highlighted the importance of relying on each other’s strengths.",
+      },
+      {
+        type: "heading",
+        text: "2. Leadership simulations and case studies",
+      },
+      {
+        type: "paragraph",
+        text: "Sessions that demonstrated how power dynamics influence decisions and why inclusivity and diverse perspectives shape stronger group thinking.",
+      },
+      {
+        type: "heading",
+        text: "3. Tech strategy discussions",
+      },
+      {
+        type: "paragraph",
+        text: "Case studies on companies like Moderna and Apple in Professor Kramer’s class that helped me start developing frameworks to evaluate complex business problems.",
+      },
+      {
+        type: "heading",
+        text: "4. Product development classes",
+      },
+      {
+        type: "paragraph",
+        text: "Sessions with Professor Mark Thomas that deepened my thinking about product discovery and product-market fit.",
+      },
+      {
+        type: "heading",
+        text: "5. MCA Case Competition",
+      },
+      {
+        type: "paragraph",
+        text: "An early experience of fast-paced problem solving alongside classmates.",
+      },
+      {
+        type: "paragraph",
+        text: "This is just the beginning, and I’m looking forward to learning from my classmates and professors over the next two years while continuing to explore how technology, product thinking, and AI intersect.",
+      },
+    ],
+  },
+  {
+    slug: "three-takeaways-on-agentic-ai-from-the-tech-and-society-conference",
+    title: "Three Takeaways on Agentic AI from the Tech + Society Conference",
+    summary:
+      "Reflections from the UCLA Anderson Tech + Society Conference on product quality, AI infrastructure, trust, and the skill shifts agentic systems are accelerating.",
+    category: "Product Thinking",
+    publishedAt: "2025-11-07",
+    readingTime: "4 min read",
+    image: {
+      src: "/techandsociety_1.jpeg",
+      alt: "Jeetu Patel and Terry Kramer on stage during the Tech + Society Conference 2025 keynote session.",
+      caption: "Jeetu Patel in conversation with Terry Kramer at the Tech + Society Conference 2025.",
+    },
+    content: [
+      {
+        type: "paragraph",
+        text: "At the Tech + Society Conference 2025, hosted by the UCLA Anderson Easton Technology Management Center, a panel discussion explored how agentic AI is reshaping the technology landscape. The session featured Jeetu Patel, President and Chief Product Officer at Cisco, and was moderated by Terry Kramer.",
+      },
+      {
+        type: "paragraph",
+        text: "One quote that stuck with me came from Mark Twain:",
+      },
+      {
+        type: "quote",
+        text: "I didn’t have time to write a short letter, so I wrote a long one instead.",
+      },
+      {
+        type: "paragraph",
+        text: "Simplicity is difficult. With that spirit, here are three ideas from the session that stood out.",
+      },
+      {
+        type: "heading",
+        text: "1. What kind of products should we build?",
+      },
+      {
+        type: "paragraph",
+        text: "Products people cannot stop talking about. The kind you naturally recommend to friends and family. Word-of-mouth energy is often the strongest signal of product value.",
+      },
+      {
+        type: "paragraph",
+        text: "It reminded me of moments we discussed in strategy class, early Uber founders personally reaching out to black-cab drivers in San Francisco, or Airbnb founders going door-to-door to convince hosts to list their homes.",
+      },
+      {
+        type: "heading",
+        text: "2. Key constraints shaping the AI ecosystem",
+      },
+      {
+        type: "heading",
+        text: "Infrastructure",
+      },
+      {
+        type: "paragraph",
+        text: "AI demand is driving massive infrastructure expansion, with gigawatts of computing capacity being built in regions like Saudi Arabia and the UAE. Data centers are becoming strategic national investments. Cisco is working on low-latency connected data-center clusters integrating switches, GPUs, and hyperscaler infrastructure to support this scale.",
+      },
+      {
+        type: "heading",
+        text: "Trust and security",
+      },
+      {
+        type: "paragraph",
+        text: "AI systems can behave unpredictably. Cisco’s focus is on building guardrails and infrastructure so organizations can deploy AI safely without reinventing governance and security frameworks.",
+      },
+      {
+        type: "heading",
+        text: "Data and applications",
+      },
+      {
+        type: "paragraph",
+        text: "The real leverage does not come from algorithms alone. It comes from proprietary data and the applications built on top of those models.",
+      },
+      {
+        type: "heading",
+        text: "3. A cultural shift in skills",
+      },
+      {
+        type: "paragraph",
+        text: "AI will reshape how work is done. Roles will evolve, and education systems will adapt. The most important skill will be learning how to learn quickly. Balancing experience to recognize patterns with the willingness to unlearn and adapt will matter more than ever.",
+      },
+      {
+        type: "paragraph",
+        text: "Qualities like curiosity, hunger, and adaptability will likely define the next generation of leaders.",
+      },
+    ],
+  },
+  {
+    slug: "ai-native-leadership-and-product-thinking-from-ucla-tech-and-society",
+    title: "AI-Native Thinking: Lessons from the Tech & Society Conference",
+    summary:
+      "Reflections on API readiness, evals, experimentation, and psychological safety from a UCLA Anderson Easton Technology Management Center session on AI-native organizations.",
+    category: "Product Thinking",
+    publishedAt: "2025-11-07",
+    readingTime: "3 min read",
+    image: {
+      src: "/techandsociety_2.jpeg",
+      alt: "Panel discussion at the UCLA Anderson Tech + Society Conference focused on agent quality, evals, and AI-native workflows.",
+      caption: "Discussion on agent quality, evals, and AI-native workflows at the UCLA Anderson Tech + Society Conference.",
+    },
+    content: [
+      {
+        type: "paragraph",
+        text: "A session hosted by the UCLA Anderson Easton Technology Management Center featuring Raghvender Arni, Arun Rao, and Deborah Liu explored how AI-native thinking is reshaping leadership, product management, and organizational culture.",
+      },
+      {
+        type: "heading",
+        text: "Key takeaways",
+      },
+      {
+        type: "heading",
+        text: "1. API-first mindset",
+      },
+      {
+        type: "paragraph",
+        text: "Digital readiness isn’t optional anymore. If your business isn’t built for AI integration or doesn’t have the necessary APIs for agents to consume, it will increasingly fall behind.",
+      },
+      {
+        type: "heading",
+        text: "2. Evals are the new KPIs for data PMs",
+      },
+      {
+        type: "paragraph",
+        text: "Knowing how to measure model reliability and when a job is truly done is becoming a critical product skill.",
+      },
+      {
+        type: "heading",
+        text: "3. Jump into the pool",
+      },
+      {
+        type: "paragraph",
+        text: "Don’t just use AI for queries. Experiment with agentic tools, automate workflows, and prototype with intention.",
+      },
+      {
+        type: "heading",
+        text: "4. Psychological safety fuels innovation",
+      },
+      {
+        type: "paragraph",
+        text: "When teams feel safe voicing half-formed ideas, critique turns into creativity. Great cultures make curiosity safe.",
+      },
+      {
+        type: "paragraph",
+        text: "As someone exploring the intersection of AI and product strategy, sessions like these are a reminder that transformation isn’t about replacing people. It’s about retraining how we think, lead, and build as we augment ourselves with AI.",
+      },
+    ],
+  },
+  {
+    slug: "ai-security-hidden-threats-in-ai-guardrails",
+    title: "AI Security: The Hidden Threats in AI Guardrails",
+    summary:
+      "Why AI guardrails are not a complete defense, and what product builders should think about when deploying agentic systems with real permissions.",
+    category: "AI",
+    publishedAt: "2026-01-14",
+    readingTime: "4 min read",
+    image: {
+      src: "/AI Security The Hidden Threats in AI Guardrails.jpeg",
+      alt: "Diagram contrasting jailbreaking and prompt injection attacks against an LLM application.",
+      caption: "Illustration of jailbreaking and prompt injection attack patterns.",
+    },
+    content: [
+      {
+        type: "paragraph",
+        text: "It’s 2026 and AI products continue to dominate the conversations, as seen in CES 2026. With new frontier models dropping almost every quarter, the pace has been relentless.",
+      },
+      {
+        type: "paragraph",
+        text: "But there’s a topic lurking in the shadows that we aren't discussing enough: AI security.",
+      },
+      {
+        type: "paragraph",
+        text: "Recently, I tuned into a conversation involving Sander Schulhoff, a leading researcher in the field of adversarial robustness, which made me pause and reflect.",
+      },
+      {
+        type: "paragraph",
+        text: "To understand why, let's look at two big vulnerabilities:",
+      },
+      {
+        type: "heading",
+        text: "Two big vulnerabilities",
+      },
+      {
+        type: "list",
+        items: [
+          "Jail-breaking: Tricking a model into bypassing its safety filters to generate harmful content.",
+          "Prompt-injection: Using a prompt to hijack the AI system’s original instructions, including the system prompt, to make it do things it should not, like leaking data.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Okay, so we just use guardrails, right?",
+      },
+      {
+        type: "quote",
+        text: "The hard truth: guardrails are not a wall; they are a screen door.",
+      },
+      {
+        type: "paragraph",
+        text: "The latest research shows that even frontier models from labs like OpenAI and Google can be tricked by ingenious human prompts. If you’re using an LLM to \"police\" another LLM, you haven't solved the security problem, you’ve just doubled it.",
+      },
+      {
+        type: "heading",
+        text: "What does this mean for the products we build?",
+      },
+      {
+        type: "heading",
+        text: "1. The FAQ Chatbot",
+      },
+      {
+        type: "paragraph",
+        text: "If you are just building a chatbot, don't obsess over security. Why? Because if a malicious user wants to trick your bot into saying something offensive they could have just gone to ChatGPT and done the same thing. The harm is already decentralized.",
+      },
+      {
+        type: "paragraph",
+        text: "Spending a fortune on AI Guardrails for a pure text-bot isn't needed. It is better to accept the baseline model safety and focus your resources elsewhere.",
+      },
+      {
+        type: "heading",
+        text: "2. Agentic Systems",
+      },
+      {
+        type: "paragraph",
+        text: "This is where it gets real. If an agent can take autonomous actions, especially with more privileges, we have a problem.",
+      },
+      {
+        type: "paragraph",
+        text: "How do we handle this from a product lens?",
+      },
+      {
+        type: "paragraph",
+        text: "We have to think if the model gets hijacked: \"What’s the worst that could happen?\"",
+      },
+      {
+        type: "list",
+        items: [
+          "Sandboxing: If your agent runs code, avoid running it on the main server. Docker containers can help isolate execution.",
+          "The Principle of Least Privilege: Instead of giving an agent full access, give it only what it needs. If you're using a multi-agent framework (like CAMEL), define the roles strictly. An \"Email Summarizer\" agent should have Read-Only access. Without \"Send\" permissions, a malicious prompt can’t force it to leak your data to an external party.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "The takeaway",
+      },
+      {
+        type: "paragraph",
+        text: "There’s no quick patch like classical cybersecurity here. But as product owners, our job isn't to find a perfect AI model, it’s to design adversarially robust systems. We need to be on a constant lookout for the what if.",
+      },
+      {
+        type: "paragraph",
+        text: "#AI #AISecurity #GenerativeAI #AgenticAI #ProductManagement #SecurityByDesign #ResponsibleAI",
+      },
+    ],
+  },
+];
+
+export function getAllArticles(): Article[] {
+  return [...articles].sort(
+    (left, right) =>
+      new Date(right.publishedAt).getTime() - new Date(left.publishedAt).getTime()
+  );
+}
+
+export function getRecentArticles(limit = 3): Article[] {
+  return getAllArticles().slice(0, limit);
+}
+
+export function getArticleBySlug(slug: string): Article | undefined {
+  return articles.find((article) => article.slug === slug);
+}
+
+export function getRelatedArticles(current: Article, limit = 2): Article[] {
+  return getAllArticles()
+    .filter(
+      (article) =>
+        article.slug !== current.slug && article.category === current.category
+    )
+    .slice(0, limit);
+}
+
+export function formatArticleDate(publishedAt: string): string {
+  return new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(`${publishedAt}T00:00:00`));
+}

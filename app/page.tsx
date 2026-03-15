@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Timeline from "@/components/Timeline";
 import Projects from "@/components/Projects";
-import WritingTeaser from "@/components/WritingTeaser";
+import RecentArticles from "@/components/RecentArticles";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -29,10 +29,10 @@ export default function Home() {
         </section>
 
         <section
-          id="writing"
+          id="articles"
           className="scroll-mt-28 border-t border-white/70 pt-16"
         >
-          <WritingTeaser />
+          <RecentArticles />
         </section>
 
         <section
