@@ -31,31 +31,33 @@ export default function Navbar() {
   );
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-30 border-b border-white/70 bg-pale-gray/90 backdrop-blur">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <header className="fixed left-0 right-0 top-0 z-30">
+      <nav className="mx-auto mt-4 flex max-w-7xl items-center justify-between rounded-full bg-pale-gray/70 px-4 py-3 backdrop-blur-[20px] md:px-6">
         <Link
           href={isHomePage ? "#home" : "/#home"}
           onClick={(event) => handleScroll(event, "#home")}
-          className="text-sm font-semibold tracking-tight transition hover:text-accent"
+          className="font-heading text-sm font-bold uppercase tracking-[0.18em] text-accent transition hover:text-charcoal md:text-[15px]"
         >
-          Utkarsh Singh Rawat
+          Utkarsh Rawat
         </Link>
-        <div className="hidden items-center gap-5 text-sm text-charcoal/70 md:flex">
+
+        <div className="hidden items-center gap-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-charcoal/60 md:flex">
           {sections.map((section) => (
             <Link
               key={section.href}
               href={isHomePage ? section.href : `/${section.href}`}
               onClick={(event) => handleScroll(event, section.href)}
-              className="transition hover:text-charcoal"
+              className="transition hover:text-accent"
             >
               {section.label}
             </Link>
           ))}
         </div>
+
         <Link
           href={isHomePage ? "#contact" : "/#contact"}
           onClick={(event) => handleScroll(event, "#contact")}
-          className="rounded-full border border-charcoal/10 bg-white px-3 py-1 text-xs font-medium text-charcoal shadow-sm transition hover:-translate-y-0.5 hover:shadow"
+          className="rounded-md bg-accent-gradient px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white shadow-soft transition hover:-translate-y-0.5"
         >
           Let&apos;s talk
         </Link>

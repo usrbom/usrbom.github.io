@@ -15,7 +15,7 @@ export default function ArticleCard({
   return (
     <Link
       href={`/articles/${article.slug}`}
-      className={`group gradient-card flex h-full flex-col rounded-3xl border border-white/70 shadow-soft transition hover:-translate-y-1 hover:shadow-lg ${
+      className={`group surface-panel flex h-full flex-col rounded-[1.75rem] shadow-soft transition duration-300 hover:-translate-y-4 hover:shadow-float ${
         isFeatured ? "p-6 md:p-7" : "p-5"
       }`}
     >
@@ -29,7 +29,7 @@ export default function ArticleCard({
 
       <h3
         className={`mt-5 font-heading font-semibold tracking-tight text-charcoal ${
-          isFeatured ? "text-xl md:text-2xl" : "text-lg"
+          isFeatured ? "text-2xl md:text-[1.9rem]" : "text-lg"
         }`}
       >
         {article.title}
@@ -37,13 +37,13 @@ export default function ArticleCard({
 
       <p
         className={`mt-3 leading-relaxed text-charcoal/78 ${
-          isFeatured ? "text-sm md:text-base" : "text-sm"
+          isFeatured ? "text-sm md:text-base md:leading-7" : "text-sm"
         }`}
       >
         {article.summary}
       </p>
 
-      <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-charcoal">
+      <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent">
         Read article
         <span
           aria-hidden
