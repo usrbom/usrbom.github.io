@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Skills from "@/components/Skills";
 import Timeline from "@/components/Timeline";
 import Projects from "@/components/Projects";
 import RecentArticles from "@/components/RecentArticles";
@@ -15,6 +16,10 @@ export default function Home() {
       <section id="home" className="scroll-mt-28">
         <Hero />
       </section>
+
+      <Reveal as="section" id="skills" className="scroll-mt-28" delayMs={24}>
+        <Skills />
+      </Reveal>
 
       <Reveal as="section" id="projects" className="scroll-mt-28" delayMs={40}>
         <Projects />
