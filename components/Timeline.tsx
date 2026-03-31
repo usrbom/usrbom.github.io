@@ -95,6 +95,8 @@ export default function Timeline() {
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0);
   const [hoverDirection, setHoverDirection] = useState<"left" | "right" | null>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
   const autoScrollVelocityRef = useRef(0);
 
   const trackWidth = useMemo(() => {
@@ -171,6 +173,8 @@ export default function Timeline() {
       const maxScrollable = Math.max(viewport.scrollWidth - viewport.clientWidth, 1);
       const nextProgress = clamp(viewport.scrollLeft / maxScrollable, 0, 1);
       setProgress(nextProgress);
+      setCanScrollLeft(viewport.scrollLeft > 1);
+      setCanScrollRight(viewport.scrollLeft < maxScrollable - 1);
     };
 
     syncProgress();
@@ -224,11 +228,11 @@ export default function Timeline() {
 
       let velocity = 0;
 
-      if (distanceToRight < AUTO_SCROLL_EDGE_WIDTH) {
+      if (distanceToRight < AUTO_SCROLL_EDGE_WIDTH && canScrollRight) {
         const ratio = 1 - distanceToRight / AUTO_SCROLL_EDGE_WIDTH;
         velocity = ratio * AUTO_SCROLL_MAX_SPEED;
         setHoverDirection("right");
-      } else if (offsetX < AUTO_SCROLL_EDGE_WIDTH) {
+      } else if (offsetX < AUTO_SCROLL_EDGE_WIDTH && canScrollLeft) {
         const ratio = 1 - offsetX / AUTO_SCROLL_EDGE_WIDTH;
         velocity = -ratio * AUTO_SCROLL_MAX_SPEED;
         setHoverDirection("left");
@@ -253,7 +257,7 @@ export default function Timeline() {
       viewport.removeEventListener("pointerleave", stop);
       stop();
     };
-  }, []);
+  }, [canScrollLeft, canScrollRight]);
 
   const viewportWidth = viewportRef.current?.clientWidth ?? 0;
   const maxTranslate = Math.max(trackWidth - viewportWidth, 0);
@@ -312,7 +316,10 @@ export default function Timeline() {
                     }`
               }
             >
-              {!ENABLE_TIMELINE_SCROLL_LOCK && hoverDirection ? (
+              {!ENABLE_TIMELINE_SCROLL_LOCK &&
+              hoverDirection &&
+              ((hoverDirection === "left" && canScrollLeft) ||
+                (hoverDirection === "right" && canScrollRight)) ? (
                 <div
                   className={`pointer-events-none fixed top-1/2 z-[80] -translate-y-1/2 ${
                     hoverDirection === "right" ? "right-6" : "left-6"
