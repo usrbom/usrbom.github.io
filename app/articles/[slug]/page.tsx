@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import ArticleCarousel from "@/components/ArticleCarousel";
 import Navbar from "@/components/Navbar";
 import ArticleCard from "@/components/ArticleCard";
+import InteractiveGridBackground from "@/components/InteractiveGridBackground";
+import Reveal from "@/components/Reveal";
 import {
   ArticleContentBlock,
   formatArticleDate,
@@ -97,89 +99,99 @@ export default function ArticleDetailPage({ params }: ArticlePageProps) {
   return (
     <main className="min-h-screen bg-pale-gray">
       <Navbar />
-      <div className="mx-auto max-w-6xl px-6 pb-20 pt-28">
-        <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_320px]">
-          <article className="space-y-8">
-            <div className="space-y-5">
-              <Link
-                href="/articles"
-                className="inline-flex items-center gap-2 text-sm font-medium text-charcoal/65 transition hover:text-charcoal"
-              >
-                <span aria-hidden>←</span>
-                Back to articles
-              </Link>
+      <InteractiveGridBackground interactive={false}>
+        <div className="mx-auto max-w-7xl px-6 pb-24 pt-28 md:px-8 lg:pb-32 lg:pt-32">
+          <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_320px]">
+            <article className="space-y-8">
+              <Reveal className="surface-panel rounded-[2rem] p-8 shadow-soft md:p-10">
+              <div className="space-y-5">
+                <p className="section-kicker">Article</p>
+                <Link
+                  href="/articles"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-charcoal/58 transition hover:text-accent"
+                >
+                  <span aria-hidden>←</span>
+                  All articles
+                </Link>
 
-              <div className="space-y-4">
-                <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/55">
-                  <span className="rounded-full bg-accent/10 px-3 py-1 text-accent">
-                    {article.category}
-                  </span>
-                  <span>{formatArticleDate(article.publishedAt)}</span>
-                  <span>{article.readingTime}</span>
-                </div>
+                  <div className="space-y-4">
+                    <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/55">
+                      <span className="rounded-full bg-accent/10 px-3 py-1 text-accent">
+                        {article.category}
+                      </span>
+                      <span>{formatArticleDate(article.publishedAt)}</span>
+                      <span>{article.readingTime}</span>
+                    </div>
 
-                <h1 className="max-w-4xl font-heading text-3xl font-semibold tracking-tight text-charcoal md:text-5xl">
-                  {article.title}
-                </h1>
+                    <h1 className="max-w-4xl font-heading text-4xl font-bold tracking-[-0.03em] text-charcoal md:text-5xl">
+                      {article.title}
+                    </h1>
 
-                <p className="max-w-3xl text-lg leading-relaxed text-charcoal/72">
-                  {article.summary}
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-6 rounded-[2rem] border border-white/80 bg-white/60 p-8 shadow-soft backdrop-blur-sm md:p-10">
-              {article.content.map((block, index) => renderBlock(block, index))}
-
-              {article.image ? (
-                <figure className="space-y-3 pt-4">
-                  <div className="overflow-hidden rounded-[1.5rem] border border-white/80 bg-white shadow-soft">
-                    <Image
-                      src={article.image.src}
-                      alt={article.image.alt}
-                      width={768}
-                      height={768}
-                      className="h-auto w-full object-cover"
-                    />
+                    <p className="max-w-3xl text-lg leading-8 text-charcoal/72">
+                      {article.summary}
+                    </p>
                   </div>
-                  {article.image.caption ? (
-                    <figcaption className="text-sm text-charcoal/60">
-                      {article.image.caption}
-                    </figcaption>
-                  ) : null}
-                </figure>
-              ) : null}
+                </div>
+              </Reveal>
 
-              {article.images && article.images.length > 0 ? (
-                <ArticleCarousel images={article.images} />
-              ) : null}
-            </div>
-          </article>
+              <Reveal
+                delayMs={80}
+                className="surface-panel space-y-6 rounded-[2rem] p-8 shadow-soft md:p-10"
+              >
+                {article.content.map((block, index) => renderBlock(block, index))}
 
-          {relatedArticles.length > 0 ? (
-            <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
-              <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-charcoal/50">
-                  Related
-                </p>
-                <h2 className="font-heading text-xl font-semibold tracking-tight text-charcoal">
-                  More in {article.category}
-                </h2>
-              </div>
+                {article.image ? (
+                  <figure className="space-y-3 pt-4">
+                    <div className="overflow-hidden rounded-[1.5rem] border border-white/80 bg-white shadow-soft">
+                      <Image
+                        src={article.image.src}
+                        alt={article.image.alt}
+                        width={768}
+                        height={768}
+                        className="h-auto w-full object-cover"
+                      />
+                    </div>
+                    {article.image.caption ? (
+                      <figcaption className="text-sm text-charcoal/60">
+                        {article.image.caption}
+                      </figcaption>
+                    ) : null}
+                  </figure>
+                ) : null}
 
-              <div className="space-y-4">
-                {relatedArticles.map((relatedArticle) => (
-                  <ArticleCard
-                    key={relatedArticle.slug}
-                    article={relatedArticle}
-                    variant="archive"
-                  />
-                ))}
-              </div>
-            </aside>
-          ) : null}
+                {article.images && article.images.length > 0 ? (
+                  <ArticleCarousel images={article.images} />
+                ) : null}
+              </Reveal>
+            </article>
+
+            {relatedArticles.length > 0 ? (
+              <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
+                <Reveal className="surface-panel space-y-5 rounded-[2rem] p-6 shadow-soft md:p-7">
+                  <div className="space-y-2">
+                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-charcoal/50">
+                      Related
+                    </p>
+                    <h2 className="font-heading text-xl font-semibold tracking-tight text-charcoal">
+                      More in {article.category}
+                    </h2>
+                  </div>
+
+                  <div className="space-y-4">
+                    {relatedArticles.map((relatedArticle) => (
+                      <ArticleCard
+                        key={relatedArticle.slug}
+                        article={relatedArticle}
+                        variant="archive"
+                      />
+                    ))}
+                  </div>
+                </Reveal>
+              </aside>
+            ) : null}
+          </div>
         </div>
-      </div>
+      </InteractiveGridBackground>
     </main>
   );
 }

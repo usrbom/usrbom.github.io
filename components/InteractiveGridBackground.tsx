@@ -9,6 +9,7 @@ import {
 
 type InteractiveGridBackgroundProps = {
   children: ReactNode;
+  interactive?: boolean;
 };
 
 type PointerState = {
@@ -32,6 +33,7 @@ function ease(current: number, target: number, factor: number) {
 
 export default function InteractiveGridBackground({
   children,
+  interactive = true,
 }: InteractiveGridBackgroundProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -188,6 +190,8 @@ export default function InteractiveGridBackground({
   }, []);
 
   const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (!interactive) return;
+
     const bounds = event.currentTarget.getBoundingClientRect();
     const pointer = pointerRef.current;
 
@@ -198,6 +202,8 @@ export default function InteractiveGridBackground({
   };
 
   const handlePointerLeave = () => {
+    if (!interactive) return;
+
     pointerRef.current.targetActive = 0;
     startRenderRef.current();
   };
@@ -206,8 +212,8 @@ export default function InteractiveGridBackground({
     <div
       ref={rootRef}
       className="interactive-grid relative isolate"
-      onPointerMove={handlePointerMove}
-      onPointerLeave={handlePointerLeave}
+      onPointerMove={interactive ? handlePointerMove : undefined}
+      onPointerLeave={interactive ? handlePointerLeave : undefined}
     >
       <div className="absolute inset-x-0 top-0 -z-10 h-[32rem] bg-[radial-gradient(circle_at_top_left,rgba(0,64,224,0.18),transparent_38%),radial-gradient(circle_at_top_right,rgba(0,193,253,0.16),transparent_28%)]" />
       <canvas

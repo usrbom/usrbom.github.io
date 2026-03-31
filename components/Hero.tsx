@@ -63,7 +63,7 @@ export default function Hero() {
         <div className="surface-panel relative w-full max-w-sm overflow-hidden rounded-[2rem] p-4 shadow-float">
           <div className="relative aspect-[0.9] overflow-hidden rounded-[1.6rem] bg-surface-low">
             <Image
-              src="/utkarsh-headshot.jpg"
+              src="/utkarsh-cropped-tieless.png"
               alt="Utkarsh Rawat headshot"
               fill
               priority

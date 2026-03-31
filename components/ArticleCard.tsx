@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Article, formatArticleDate } from "@/lib/articles";
 
@@ -11,6 +12,7 @@ export default function ArticleCard({
   variant = "archive",
 }: ArticleCardProps) {
   const isFeatured = variant === "featured";
+  const previewImage = article.image ?? article.images?.[0];
 
   return (
     <Link
@@ -19,6 +21,24 @@ export default function ArticleCard({
         isFeatured ? "p-6 md:p-7" : "p-5"
       }`}
     >
+      {previewImage ? (
+        <div className="relative mb-5 overflow-hidden rounded-[1.4rem] bg-charcoal/6">
+          <Image
+            src={previewImage.src}
+            alt={previewImage.alt}
+            width={1600}
+            height={1000}
+            sizes="(min-width: 1024px) 24rem, (min-width: 768px) 50vw, 100vw"
+            style={{
+              objectPosition: previewImage.objectPosition ?? "center",
+            }}
+            className={`w-full object-cover transition duration-500 group-hover:scale-[1.02] ${
+              isFeatured ? "aspect-[16/10]" : "aspect-[16/10]"
+            }`}
+          />
+        </div>
+      ) : null}
+
       <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/55">
         <span className="rounded-full bg-accent/10 px-3 py-1 text-accent">
           {article.category}

@@ -8,7 +8,6 @@ const sections = [
   { href: "#home", label: "About" },
   { href: "#projects", label: "Projects" },
   { href: "#timeline", label: "Timeline" },
-  { href: "#articles", label: "Articles" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -52,6 +51,9 @@ export default function Navbar() {
               {section.label}
             </Link>
           ))}
+          <Link href="/articles" className="transition hover:text-accent">
+            Articles
+          </Link>
         </div>
 
         <Link
