@@ -9,16 +9,26 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        charcoal: "#0b1021",
-        "pale-gray": "#f4f6fb",
-        accent: "#2563eb",
+        charcoal: "#091d2d",
+        "pale-gray": "#f7f9ff",
+        accent: "#0040e0",
+        "accent-bright": "#2e5bff",
+        "surface-low": "#edf4ff",
+        "surface-white": "#ffffff",
+        signal: "#00c1fd",
+        amber: "#ffba35",
       },
       fontFamily: {
         heading: ["var(--font-space-grotesk)", ...fontFamily.sans],
         body: ["var(--font-inter)", ...fontFamily.sans],
       },
       boxShadow: {
-        soft: "0 20px 60px rgba(11, 16, 33, 0.07)",
+        soft: "0 24px 60px rgba(9, 29, 45, 0.06)",
+        float: "0 40px 80px rgba(9, 29, 45, 0.08)",
+      },
+      backgroundImage: {
+        "accent-gradient":
+          "linear-gradient(135deg, #0040e0 0%, #2e5bff 100%)",
       },
     },
   },

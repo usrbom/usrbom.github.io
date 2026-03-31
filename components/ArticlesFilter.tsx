@@ -41,8 +41,8 @@ export default function ArticlesFilter({
               onClick={() => setActiveFilter(filter)}
               className={`rounded-full px-4 py-2 text-sm font-medium transition ${
                 isActive
-                  ? "bg-charcoal text-white shadow-sm"
-                  : "border border-charcoal/10 bg-white text-charcoal/75 hover:border-charcoal/20 hover:text-charcoal"
+                  ? "bg-accent-gradient text-white shadow-soft"
+                  : "border border-charcoal/10 bg-white/80 text-charcoal/75 hover:border-charcoal/20 hover:text-charcoal"
               }`}
             >
               {filter}

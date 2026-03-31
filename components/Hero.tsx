@@ -1,55 +1,79 @@
 import Image from "next/image";
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 
 export default function Hero() {
   return (
-    <div className="grid items-center gap-12 md:grid-cols-[1.4fr_1fr]">
-      <div className="space-y-5">
-        <div className="inline-flex items-center gap-2 rounded-full border border-charcoal/10 bg-white px-3 py-1 text-xs font-medium text-charcoal/70 shadow-sm">
-          <span className="h-2 w-2 rounded-full bg-accent" />
+    <div className="grid items-start gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
+      <div className="space-y-8 pt-8 lg:pt-12">
+        <Reveal delayMs={80}>
+          <div className="inline-flex items-center gap-2 rounded-full bg-surface-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/65 shadow-soft backdrop-blur">
+          <span className="h-2 w-2 rounded-full bg-signal" />
           Builder-first mindset
-        </div>
-        <h1 className="font-heading text-3xl leading-tight tracking-tight text-charcoal md:text-4xl lg:text-5xl">
-          Hi, I&apos;m Utkarsh, a customer-focused builder crafting products at the intersection of <span className="text-accent"> technology, data and design.</span>
-        </h1>
-        <p className="max-w-2xl text-base leading-relaxed text-charcoal/80">
-        UCLA Anderson MBA candidate focused on Technology Leadership & Product Management. Previously a Senior Software Engineer at ServiceNow, 
-        where I spent 6+ years building automation frameworks and AI-powered prototypes for enterprise workflows.
-        </p>
+          </div>
+        </Reveal>
 
-        <div className="flex flex-wrap gap-3">
+        <Reveal delayMs={180}>
+          <div>
+          <h1 className="max-w-5xl font-heading text-5xl font-bold leading-[0.92] tracking-[-0.04em] text-charcoal md:text-6xl lg:text-7xl">
+            Hi, I&apos;m Utkarsh, a customer-focused builder crafting products
+            at the intersection of{" "}
+            <span className="text-accent">technology, data and design.</span>
+          </h1>
+          </div>
+        </Reveal>
+
+        <Reveal delayMs={300}>
+          <p className="max-w-3xl text-base leading-8 text-charcoal/78 md:text-lg">
+          UCLA Anderson MBA candidate focused on Technology Leadership &amp;
+          Product Management. Previously a Senior Software Engineer at
+          ServiceNow, where I spent 6+ years building automation frameworks and
+          AI-powered prototypes for enterprise workflows.
+          </p>
+        </Reveal>
+
+        <Reveal delayMs={420}>
+          <div className="flex flex-wrap gap-3">
           <Link
             href="#projects"
-            className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow"
+            className="rounded-md bg-accent-gradient px-5 py-3 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-0.5"
           >
             View projects
           </Link>
           <Link
             href="/Utkarsh_Rawat_Resume.pdf"
-            className="rounded-full border border-charcoal/10 bg-white px-5 py-2 text-sm font-semibold text-charcoal shadow-sm transition hover:-translate-y-0.5 hover:shadow"
+            className="rounded-md bg-surface-white/80 px-5 py-3 text-sm font-semibold text-charcoal shadow-soft ring-1 ring-accent/10 transition hover:-translate-y-0.5"
           >
             Download resume
           </Link>
-        </div>
+          </div>
+        </Reveal>
 
-        <p className="text-sm font-medium uppercase tracking-[0.24em] text-charcoal/50">
+        <Reveal delayMs={520}>
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-charcoal/50">
           AI · Product strategy · Prototyping · Enterprise software · GenAI
-        </p>
+          </p>
+        </Reveal>
       </div>
 
-      <div className="relative flex justify-center md:justify-end">
-        <div className="gradient-card relative h-64 w-64 overflow-hidden rounded-3xl border border-white/60 shadow-soft lg:h-72 lg:w-72">
-          <Image
-            src="utkarsh-headshot.jpg"
-            alt="Utkarsh Rawat headshot"
-            fill
-            priority
-            sizes="(min-width: 1024px) 18rem, (min-width: 768px) 16rem, 14rem"
-            className="object-cover"
-          />
-          <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-white/50" />
+      <Reveal
+        delayMs={260}
+        className="relative flex justify-center pt-6 lg:justify-end lg:pt-28"
+      >
+        <div className="surface-panel relative w-full max-w-sm overflow-hidden rounded-[2rem] p-4 shadow-float">
+          <div className="relative aspect-[0.9] overflow-hidden rounded-[1.6rem] bg-surface-low">
+            <Image
+              src="/utkarsh-cropped-tieless.png"
+              alt="Utkarsh Rawat headshot"
+              fill
+              priority
+              sizes="(min-width: 1024px) 24rem, (min-width: 768px) 20rem, 18rem"
+              className="object-cover"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0)_45%,rgba(9,29,45,0.12)_100%)]" />
+          </div>
         </div>
-      </div>
+      </Reveal>
     </div>
   );
 }

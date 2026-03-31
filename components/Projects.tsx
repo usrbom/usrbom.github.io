@@ -1,94 +1,144 @@
+import Image from "next/image";
+import Reveal from "@/components/Reveal";
+
 const projects = [
   {
-    title: "Penny : AI Insights Engine for PNC",
-    role: "Product lead, Tech Innovation Challenge",
-    timeframe: "2025",
+    title: "Agentic AI Interview Engine (Healthcare)",
+    org: "Google Opal workflow",
+    timeframe: "Spring 2026",
     summary:
-      "Reimagined product discovery for PNC product managers with an AI insights engine that surfaces customer needs, trends, and risks across data silos.",
-    tags: ["Product Strategy", "AI", "Competition Winner"],
+      "Developed a no-code agentic workflow in Google Opal to simulate high-stakes triage interviews using multimodal inputs, orchestration agents, and structured evaluations.",
+    detail:
+      "I iteratively refined prompt-driven workflows while working through non-determinism, debugging, and system-design tradeoffs. The project also surfaced real risks around bias, over-standardization, and AI dependency in hiring.",
+    tags: ["Project", "Agentic AI", "Healthcare"],
+    image: "/projects/homepage/agentic-ai-interview-engine-homepage.png",
+    imageAlt: "Agentic AI Interview Engine healthcare project visual.",
   },
   {
-    title: "ServiceNow CRM GenAI Recommendation Prototype",
-    role: "Product-minded engineer / prototyper",
+    title: "Penny: AI Insights Engine for PNC",
+    org: "UCLA Anderson x PNC",
+    timeframe: "Winter 2025",
+    summary:
+      "Designed an AI insights engine that helped product teams surface customer needs, market signals, and decision-ready recommendations across fragmented banking data.",
+    detail:
+      "The concept won first place at the Tepper Tech Innovation Challenge and became a strong example of how I like to work at the intersection of product strategy, enterprise AI, and storytelling.",
+    tags: ["Project", "AI Strategy"],
+    image: "/timeline/penny-pnc.jpeg",
+    imageAlt: "Penny AI insights engine concept for PNC.",
+  },
+  {
+    title: "CRM GenAI Recommendations at ServiceNow",
+    org: "ServiceNow",
     timeframe: "2023",
     summary:
-      "Built a GenAI-powered recommendation experience for CRM agents, using LLMs and workflow data to suggest next best actions inside ServiceNow.",
-    tags: ["GenAI", "Enterprise", "Prototyping"],
+      "Built a recommendation experience for CRM agents that surfaced next-best actions using workflow context and LLM-assisted reasoning.",
+    detail:
+      "The prototype was later featured in ServiceNow's Knowledge keynote as part of a broader push toward more useful, embedded AI experiences inside enterprise tools.",
+    tags: ["Project", "GenAI"],
+    image: "/timeline/knowledge23.jpg",
+    imageAlt: "ServiceNow Knowledge keynote demo for a CRM GenAI recommendation prototype.",
   },
   {
-    title: "Vaccine Distribution Workflow Prototype",
-    role: "Product-minded engineer / workflow research",
+    title: "VaccineNow: Application for Vaccine Distribution Management",
+    org: "ServiceNow hackathon prototype",
     timeframe: "2020",
     summary:
-      "Researched vaccine distribution workflows used by U.S. government agencies like the CDC and built a prototype to streamline allocation, prioritization, and distribution tracking. Ranked in the top 10% in a national workflow automation hackathon.",
-    tags: ["Healthcare", "Workflow Design", "Research", "Hackathon"],
+      "Conceptualized and prototyped a vaccine distribution workflow to support citizen registration, appointment scheduling, site operations, and rollout coordination during a ServiceNow hackathon.",
+    detail:
+      "Collaborated with three engineers, scoped the MVP by researching public-sector rollout requirements, and deliberated on tradeoffs across registration, inventory, eligibility, and check-in flows. The concept ranked in the top 10% of the hackathon, validating the business opportunity. The company later productized a vaccine distribution app for large-scale public deployment for NHS Scotland.",
+    tags: ["Project", "Healthcare"],
+    image: "/projects/homepage/vaccine-distribution-homepage.jpeg",
+    imageAlt: "Workflow research and operational systems prototype visual.",
   },
   {
-    title: "Neo Health Assistant : AI Chatbot for Student Well-Being",
-    role: "Developer / conversational AI prototype",
-    timeframe: "2018",
+    title: "Neo Health Assistant",
+    org: "IIT BHU Design & Innovation Hub",
+    timeframe: "Summer 2017",
     summary:
-      "Built an early conversational assistant to help students reflect on stress patterns, track mood over time, and access well-being resources. Experimented with intent classification and rule-based responses to explore how AI could support mental health conversations.",
-    tags: ["AI", "Chatbots", "Mental Health", "Prototyping"],
-    link: "https://github.com/usrbom/Neo-Health-Assistant-Chatbot",
+      "Built an Android health-support app selected by the IIT BHU Design & Innovation Hub to help students monitor mental-health signals, complete PHQ-9 style assessments, and access a conversational chatbot experience.",
+    detail:
+      "The two-month project combined Android Studio, Firebase, and Dialogflow to support sign-up, data capture, offline sync, comparative analysis, and a chatbot named Neo designed to make the experience more approachable.",
+    tags: ["Project", "Health Tech"],
+    image: "/projects/homepage/neo-health.png",
+    imageAlt: "Neo Health Assistant student health application project visual.",
   },
 ];
 
 export default function Projects() {
   return (
-    <div className="space-y-6">
-      <div className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-charcoal/50">
-          Selected work
-        </p>
-        <h2 className="font-heading text-2xl font-semibold tracking-tight text-charcoal">
-          Projects
-        </h2>
-        <p className="max-w-2xl text-sm text-charcoal/75">
-          A snapshot of products and prototypes that reflect how I think about
-          AI, product strategy, and systems.
-        </p>
-      </div>
+    <div className="space-y-8">
+      <Reveal className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
+        <div className="space-y-3">
+          <p className="section-kicker">Selected work</p>
+          <h2 className="font-heading text-3xl font-bold tracking-[-0.03em] text-charcoal md:text-4xl">
+            Projects
+          </h2>
+          <p className="max-w-2xl text-base leading-7 text-charcoal/74">
+            A more visual snapshot of the products, prototypes, and systems work
+            that shaped how I build.
+          </p>
+        </div>
+      </Reveal>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        {projects.map((project) => (
-          <article
+      <div className="grid gap-6 lg:grid-cols-3 lg:items-start">
+        {projects.map((project, index) => (
+          <Reveal
             key={project.title}
-            className="group gradient-card flex h-full flex-col rounded-3xl border border-white/70 p-6 shadow-soft transition hover:-translate-y-1 hover:shadow-lg"
+            as="article"
+            delayMs={60 + index * 90}
+            className="overflow-hidden rounded-[2rem] bg-white p-5 shadow-soft md:p-6"
           >
-            <div className="flex items-center justify-between text-xs uppercase tracking-[0.24em] text-charcoal/60">
-              <span>{project.timeframe}</span>
-              <span className="inline-flex items-center gap-2 font-medium text-charcoal/70">
-                <span className="h-1 w-8 rounded-full bg-accent/70 transition group-hover:w-10 group-hover:bg-accent" />
-                {project.role}
-              </span>
-            </div>
-            <h3 className="mt-4 font-heading text-xl font-semibold text-charcoal">
-              {project.title}
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-charcoal/80">
-              {project.summary}
-            </p>
-            {project.link ? (
-              <a
-                href={project.link}
-                className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-accent transition hover:gap-3"
-              >
-                View on GitHub
-                <span aria-hidden>→</span>
-              </a>
-            ) : null}
-            <div className="mt-4 flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full bg-pale-gray px-3 py-1 text-xs font-medium text-charcoal/80 ring-1 ring-white/60"
-                >
-                  {tag}
+            <div className="space-y-5">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="inline-flex items-center rounded-full bg-[#d9f3c7] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-charcoal">
+                  {project.tags[0]}
                 </span>
-              ))}
+              </div>
+
+              <div className="relative overflow-hidden rounded-[1.6rem] bg-charcoal/6">
+                <Image
+                  src={project.image}
+                  alt={project.imageAlt}
+                  width={1600}
+                  height={1000}
+                  sizes="(min-width: 1024px) 24rem, 100vw"
+                  className={`w-full object-cover ${
+                    index % 3 === 0
+                      ? "aspect-[16/10]"
+                      : index % 3 === 1
+                        ? "aspect-[16/11]"
+                        : "aspect-[16/12]"
+                  }`}
+                />
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="max-w-4xl font-heading text-3xl font-semibold tracking-[-0.03em] text-charcoal md:text-[2.2rem]">
+                  {project.title}
+                </h3>
+                <div className="space-y-1 text-charcoal/58">
+                  <p className="text-base leading-7">{project.org}</p>
+                  <p className="text-base leading-7">{project.timeframe}</p>
+                </div>
+              </div>
+
+              <div className="max-w-4xl space-y-4 text-base leading-8 text-charcoal/74">
+                <p>{project.summary}</p>
+                {index !== 2 ? <p>{project.detail}</p> : null}
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {project.tags.slice(1).map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-pale-gray px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-charcoal/68"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-          </article>
+          </Reveal>
         ))}
       </div>
     </div>

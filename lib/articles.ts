@@ -30,11 +30,13 @@ export type Article = {
     src: string;
     alt: string;
     caption?: string;
+    objectPosition?: string;
   };
   images?: Array<{
     src: string;
     alt: string;
     caption?: string;
+    objectPosition?: string;
   }>;
 };
 
@@ -276,6 +278,7 @@ const articles: Article[] = [
       src: "/AI Security The Hidden Threats in AI Guardrails.jpeg",
       alt: "Diagram contrasting jailbreaking and prompt injection attacks against an LLM application.",
       caption: "Illustration of jailbreaking and prompt injection attack patterns.",
+      objectPosition: "center top",
     },
     content: [
       {
