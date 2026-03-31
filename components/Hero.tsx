@@ -42,9 +42,11 @@ export default function Hero() {
           </Link>
           <Link
             href="/Utkarsh_Rawat_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-md bg-surface-white/80 px-5 py-3 text-sm font-semibold text-charcoal shadow-soft ring-1 ring-accent/10 transition hover:-translate-y-0.5"
           >
-            Download resume
+            View resume
           </Link>
           </div>
         </Reveal>
