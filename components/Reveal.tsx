@@ -24,12 +24,13 @@ export default function Reveal<T extends ElementType = "div">({
   children,
   className,
   delayMs = 0,
-  as: Tag = "div",
+  as,
   once = true,
   threshold = 0.2,
   rootMargin = "0px 0px -8% 0px",
   ...rest
 }: RevealProps<T>) {
+  const Tag = (as ?? "div") as ElementType;
   const ref = useRef<HTMLElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
