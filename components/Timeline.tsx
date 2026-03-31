@@ -300,10 +300,6 @@ export default function Timeline() {
                   </span>
                 ) : null}
               </div>
-              <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/48">
-                <span>{timeline[activeIndex].year}</span>
-                <span>{activeIndex + 1} / {timeline.length}</span>
-              </div>
             </div>
 
             <div

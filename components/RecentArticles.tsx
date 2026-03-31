@@ -21,7 +21,7 @@ export default function RecentArticles() {
 
         <Link
           href="/articles"
-          className="inline-flex items-center gap-2 rounded-md bg-surface-white px-4 py-3 text-sm font-semibold text-charcoal shadow-soft ring-1 ring-accent/10 transition hover:-translate-y-0.5"
+          className="inline-flex items-center gap-2 rounded-md bg-accent-gradient px-4 py-3 text-sm font-semibold text-white shadow-soft transition hover:-translate-y-1"
         >
           View all articles
           <span aria-hidden>→</span>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "@/components/Reveal";
 
 const projects = [
   {
@@ -38,18 +39,6 @@ const projects = [
     imageAlt: "ServiceNow Knowledge keynote demo for a CRM GenAI recommendation prototype.",
   },
   {
-    title: "Enterprise Workflow Automation Foundations",
-    org: "ServiceNow",
-    timeframe: "2019-2024",
-    summary:
-      "Worked across CRM workflows, automation systems, and enterprise product experiences that sharpened how I think about reliability, scale, and user adoption.",
-    detail:
-      "This period gave me the engineering depth behind my product lens: shipping systems, understanding process friction, and learning where automation actually earns trust.",
-    tags: ["Project", "Enterprise Systems"],
-    image: "/timeline/servicenow.jpg",
-    imageAlt: "ServiceNow product and workflow systems work.",
-  },
-  {
     title: "VaccineNow: Application for Vaccine Distribution Management",
     org: "ServiceNow hackathon prototype",
     timeframe: "2020",
@@ -58,15 +47,27 @@ const projects = [
     detail:
       "Collaborated with three engineers, scoped the MVP by researching public-sector rollout requirements, and deliberated on tradeoffs across registration, inventory, eligibility, and check-in flows. The concept ranked in the top 10% of the hackathon, validating the business opportunity. The company later productized a vaccine distribution app for large-scale public deployment for NHS Scotland.",
     tags: ["Project", "Healthcare"],
-    image: "/timeline/wipro.jpg",
+    image: "/projects/homepage/vaccine-distribution-homepage.jpeg",
     imageAlt: "Workflow research and operational systems prototype visual.",
+  },
+  {
+    title: "Neo Health Assistant",
+    org: "IIT BHU Design & Innovation Hub",
+    timeframe: "Summer 2017",
+    summary:
+      "Built an Android health-support app selected by the IIT BHU Design & Innovation Hub to help students monitor mental-health signals, complete PHQ-9 style assessments, and access a conversational chatbot experience.",
+    detail:
+      "The two-month project combined Android Studio, Firebase, and Dialogflow to support sign-up, data capture, offline sync, comparative analysis, and a chatbot named Neo designed to make the experience more approachable.",
+    tags: ["Project", "Health Tech"],
+    image: "/projects/homepage/neo-health.png",
+    imageAlt: "Neo Health Assistant student health application project visual.",
   },
 ];
 
 export default function Projects() {
   return (
     <div className="space-y-8">
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
+      <Reveal className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
         <div className="space-y-3">
           <p className="section-kicker">Selected work</p>
           <h2 className="font-heading text-3xl font-bold tracking-[-0.03em] text-charcoal md:text-4xl">
@@ -77,16 +78,14 @@ export default function Projects() {
             that shaped how I build.
           </p>
         </div>
-        <p className="max-w-sm text-sm leading-7 text-charcoal/62 lg:justify-self-end">
-          Product strategy, enterprise AI, and workflow thinking presented as a
-          cleaner project feed.
-        </p>
-      </div>
+      </Reveal>
 
       <div className="grid gap-6 lg:grid-cols-3 lg:items-start">
         {projects.map((project, index) => (
-          <article
+          <Reveal
             key={project.title}
+            as="article"
+            delayMs={60 + index * 90}
             className="overflow-hidden rounded-[2rem] bg-white p-5 shadow-soft md:p-6"
           >
             <div className="space-y-5">
@@ -139,7 +138,7 @@ export default function Projects() {
                 ))}
               </div>
             </div>
-          </article>
+          </Reveal>
         ))}
       </div>
     </div>

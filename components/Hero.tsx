@@ -58,7 +58,7 @@ export default function Hero() {
 
       <Reveal
         delayMs={260}
-        className="relative flex justify-center pt-6 lg:justify-end lg:pt-16"
+        className="relative flex justify-center pt-6 lg:justify-end lg:pt-28"
       >
         <div className="surface-panel relative w-full max-w-sm overflow-hidden rounded-[2rem] p-4 shadow-float">
           <div className="relative aspect-[0.9] overflow-hidden rounded-[1.6rem] bg-surface-low">

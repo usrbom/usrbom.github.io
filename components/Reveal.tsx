@@ -17,6 +17,7 @@ type RevealProps<T extends ElementType = "div"> = {
   as?: T;
   once?: boolean;
   threshold?: number;
+  rootMargin?: string;
 } & Omit<ComponentPropsWithoutRef<T>, "as" | "children" | "className">;
 
 export default function Reveal<T extends ElementType = "div">({
@@ -26,6 +27,7 @@ export default function Reveal<T extends ElementType = "div">({
   as: Tag = "div",
   once = true,
   threshold = 0.2,
+  rootMargin = "0px 0px -8% 0px",
   ...rest
 }: RevealProps<T>) {
   const ref = useRef<HTMLElement | null>(null);
@@ -46,14 +48,14 @@ export default function Reveal<T extends ElementType = "div">({
       },
       {
         threshold,
-        rootMargin: "0px 0px -8% 0px",
+        rootMargin,
       }
     );
 
     observer.observe(node);
 
     return () => observer.disconnect();
-  }, [once, threshold]);
+  }, [once, rootMargin, threshold]);
 
   return (
     <Tag
