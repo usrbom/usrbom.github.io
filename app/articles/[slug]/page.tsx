@@ -6,7 +6,6 @@ import ArticleCarousel from "@/components/ArticleCarousel";
 import Navbar from "@/components/Navbar";
 import ArticleCard from "@/components/ArticleCard";
 import InteractiveGridBackground from "@/components/InteractiveGridBackground";
-import Reveal from "@/components/Reveal";
 import {
   ArticleContentBlock,
   formatArticleDate,
@@ -103,9 +102,8 @@ export default function ArticleDetailPage({ params }: ArticlePageProps) {
         <div className="mx-auto max-w-7xl px-6 pb-24 pt-28 md:px-8 lg:pb-32 lg:pt-32">
           <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_320px]">
             <article className="space-y-8">
-              <Reveal className="surface-panel rounded-[2rem] p-8 shadow-soft md:p-10">
+              <div className="surface-panel rounded-[2rem] p-8 shadow-soft md:p-10">
               <div className="space-y-5">
-                <p className="section-kicker">Article</p>
                 <Link
                   href="/articles"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-charcoal/58 transition hover:text-accent"
@@ -132,12 +130,9 @@ export default function ArticleDetailPage({ params }: ArticlePageProps) {
                     </p>
                   </div>
                 </div>
-              </Reveal>
+              </div>
 
-              <Reveal
-                delayMs={80}
-                className="surface-panel space-y-6 rounded-[2rem] p-8 shadow-soft md:p-10"
-              >
+              <div className="surface-panel space-y-6 rounded-[2rem] p-8 shadow-soft md:p-10">
                 {article.content.map((block, index) => renderBlock(block, index))}
 
                 {article.image ? (
@@ -162,12 +157,12 @@ export default function ArticleDetailPage({ params }: ArticlePageProps) {
                 {article.images && article.images.length > 0 ? (
                   <ArticleCarousel images={article.images} />
                 ) : null}
-              </Reveal>
+              </div>
             </article>
 
             {relatedArticles.length > 0 ? (
               <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
-                <Reveal className="surface-panel space-y-5 rounded-[2rem] p-6 shadow-soft md:p-7">
+                <div className="surface-panel space-y-5 rounded-[2rem] p-6 shadow-soft md:p-7">
                   <div className="space-y-2">
                     <p className="text-xs font-semibold uppercase tracking-[0.25em] text-charcoal/50">
                       Related
@@ -186,7 +181,7 @@ export default function ArticleDetailPage({ params }: ArticlePageProps) {
                       />
                     ))}
                   </div>
-                </Reveal>
+                </div>
               </aside>
             ) : null}
           </div>
