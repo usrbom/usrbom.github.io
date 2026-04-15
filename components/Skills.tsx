@@ -80,7 +80,7 @@ export default function Skills() {
     <div className="space-y-6">
       <div className="space-y-3">
         <p className="section-kicker">Toolbox</p>
-        <h2 className="font-heading text-3xl font-bold tracking-[-0.03em] text-charcoal md:text-4xl">
+        <h2 className="font-heading text-3xl font-bold tracking-[-0.03em] text-charcoal dark:text-pale-gray md:text-4xl">
           Skills
         </h2>
       </div>
@@ -91,12 +91,12 @@ export default function Skills() {
             key={group.title}
             as="section"
             delayMs={80 + index * 70}
-            className={`rounded-[1.4rem] p-4 shadow-soft ring-1 ${group.tone}${
+            className={`rounded-[1.4rem] p-4 shadow-soft ring-1 dark:!bg-dark-surface dark:!ring-white/8 ${group.tone}${
               index === skillGroups.length - 1 ? " sm:col-span-2" : ""
             }`}
           >
             <div className="space-y-3">
-              <h3 className="font-heading text-base font-semibold tracking-[-0.02em] text-charcoal md:text-lg">
+              <h3 className="font-heading text-base font-semibold tracking-[-0.02em] text-charcoal dark:text-pale-gray md:text-lg">
                 {group.title}
               </h3>
 
@@ -104,10 +104,10 @@ export default function Skills() {
                 {group.tools.map((tool) => (
                   <div
                     key={tool.name}
-                    className="flex items-center gap-2 rounded-xl bg-white/70 px-2.5 py-2 ring-1 ring-charcoal/6 transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(9,29,45,0.08)]"
+                    className="flex items-center gap-2 rounded-xl bg-white/70 px-2.5 py-2 ring-1 ring-charcoal/6 transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(9,29,45,0.08)] dark:bg-dark-surface-high dark:ring-white/10 dark:hover:shadow-[0_12px_28px_rgba(0,0,0,0.5)]"
                   >
                     <div
-                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.9rem] ring-1 ring-charcoal/6 ${tool.tileClassName}`}
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.9rem] ring-1 ring-charcoal/6 dark:!bg-white/95 dark:ring-white/10 ${tool.tileClassName}`}
                     >
                       {tool.icon ? (
                         <Image
@@ -126,7 +126,7 @@ export default function Skills() {
                       )}
                     </div>
 
-                    <span className="min-w-0 text-xs font-medium leading-4 text-charcoal/78">
+                    <span className="min-w-0 text-xs font-medium leading-4 text-charcoal/78 dark:text-pale-gray/75">
                       {tool.name}
                     </span>
                   </div>

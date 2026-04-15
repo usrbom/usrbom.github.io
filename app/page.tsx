@@ -45,7 +45,7 @@ export default function Home() {
   );
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-pale-gray">
+    <main className="min-h-screen overflow-x-hidden bg-pale-gray dark:bg-dark-bg">
       <Navbar />
       {ENABLE_INTERACTIVE_GRID_BACKGROUND ? (
         <InteractiveGridBackground>{pageContent}</InteractiveGridBackground>

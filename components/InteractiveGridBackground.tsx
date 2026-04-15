@@ -141,7 +141,10 @@ export default function InteractiveGridBackground({
       pointer.active = ease(pointer.active, pointer.targetActive, 0.12);
 
       context.clearRect(0, 0, width, height);
-      context.strokeStyle = "rgba(0, 64, 224, 0.07)";
+      const isDark = document.documentElement.classList.contains("dark");
+      context.strokeStyle = isDark
+        ? "rgba(247, 249, 255, 0.12)"
+        : "rgba(0, 64, 224, 0.07)";
       context.lineWidth = 1;
 
       for (let x = 0; x <= width + GRID_SPACING; x += GRID_SPACING) {
@@ -182,10 +185,17 @@ export default function InteractiveGridBackground({
     resizeObserver.observe(root);
     window.addEventListener("resize", startRender);
 
+    const themeObserver = new MutationObserver(() => startRender());
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
     return () => {
       cancelFrame();
       resizeObserver.disconnect();
       window.removeEventListener("resize", startRender);
+      themeObserver.disconnect();
     };
   }, []);
 

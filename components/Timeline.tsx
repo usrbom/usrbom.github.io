@@ -271,10 +271,10 @@ export default function Timeline() {
     <div className="space-y-6">
       <div className="space-y-3">
         <p className="section-kicker">Path so far</p>
-        <h2 className="font-heading text-3xl font-bold tracking-[-0.03em] text-charcoal md:text-4xl">
+        <h2 className="font-heading text-3xl font-bold tracking-[-0.03em] text-charcoal dark:text-pale-gray md:text-4xl">
           Timeline
         </h2>
-        <p className="max-w-2xl text-base leading-7 text-charcoal/74">
+        <p className="max-w-2xl text-base leading-7 text-charcoal/74 dark:text-pale-gray/72">
           Key milestones across engineering, product-building, and business
           school that shaped how I approach technology and leadership today.
         </p>
@@ -294,7 +294,7 @@ export default function Timeline() {
         >
           <div className="surface-panel overflow-hidden rounded-[2rem] p-5 shadow-soft md:p-6">
             <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-              <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/48">
+              <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/48 dark:text-pale-gray/45">
                 <span className="rounded-full bg-charcoal px-3 py-1 text-white">
                   Career Journey
                 </span>
@@ -360,14 +360,14 @@ export default function Timeline() {
                     </div>
 
                     <div className="max-w-[24rem] space-y-3 px-1">
-                      <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/48">
+                      <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/48 dark:text-pale-gray/45">
                         <span className="text-accent">{item.year}</span>
                         {index + 1} / {timeline.length}
                       </div>
-                      <h3 className="font-heading text-2xl font-semibold leading-8 tracking-[-0.03em] text-charcoal">
+                      <h3 className="font-heading text-2xl font-semibold leading-8 tracking-[-0.03em] text-charcoal dark:text-pale-gray">
                         {item.title}
                       </h3>
-                      <p className="text-sm leading-7 text-charcoal/72 md:text-base">
+                      <p className="text-sm leading-7 text-charcoal/72 dark:text-pale-gray/70 md:text-base">
                         {item.description}
                       </p>
                     </div>

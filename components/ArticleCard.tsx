@@ -22,7 +22,7 @@ export default function ArticleCard({
       }`}
     >
       {previewImage ? (
-        <div className="relative mb-5 overflow-hidden rounded-[1.4rem] bg-charcoal/6">
+        <div className="relative mb-5 overflow-hidden rounded-[1.4rem] bg-charcoal/6 dark:bg-white/6">
           <Image
             src={previewImage.src}
             alt={previewImage.alt}
@@ -39,8 +39,8 @@ export default function ArticleCard({
         </div>
       ) : null}
 
-      <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/55">
-        <span className="rounded-full bg-accent/10 px-3 py-1 text-accent">
+      <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/55 dark:text-pale-gray/50">
+        <span className="rounded-full bg-accent/10 px-3 py-1 text-accent dark:bg-accent/20 dark:text-signal">
           {article.category}
         </span>
         <span>{formatArticleDate(article.publishedAt)}</span>
@@ -48,7 +48,7 @@ export default function ArticleCard({
       </div>
 
       <h3
-        className={`mt-5 font-heading font-semibold tracking-tight text-charcoal ${
+        className={`mt-5 font-heading font-semibold tracking-tight text-charcoal dark:text-pale-gray ${
           isFeatured ? "text-2xl md:text-[1.9rem]" : "text-lg"
         }`}
       >
@@ -56,7 +56,7 @@ export default function ArticleCard({
       </h3>
 
       <p
-        className={`mt-3 leading-relaxed text-charcoal/78 ${
+        className={`mt-3 leading-relaxed text-charcoal/78 dark:text-pale-gray/72 ${
           isFeatured ? "text-sm md:text-base md:leading-7" : "text-sm"
         }`}
       >

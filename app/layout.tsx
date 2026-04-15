@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -28,14 +29,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-pale-gray">
+    <html lang="en" className="bg-pale-gray dark:bg-dark-bg" suppressHydrationWarning>
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} bg-pale-gray font-body text-charcoal antialiased`}
+        className={`${spaceGrotesk.variable} ${inter.variable} bg-pale-gray font-body text-charcoal antialiased dark:bg-dark-bg dark:text-pale-gray`}
       >
-        {GA_MEASUREMENT_ID ? (
-          <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
-        ) : null}
-        {children}
+        <ThemeProvider>
+          {GA_MEASUREMENT_ID ? (
+            <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
+          ) : null}
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

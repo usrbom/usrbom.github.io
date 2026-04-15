@@ -6,6 +6,10 @@
   color-scheme: light;
 }
 
+.dark {
+  color-scheme: dark;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -32,10 +36,20 @@ a:hover {
   background-color: rgba(0, 64, 224, 0.14);
 }
 
+.dark ::selection {
+  background-color: rgba(0, 193, 253, 0.22);
+}
+
 .gradient-card {
   background: radial-gradient(circle at 20% 20%, rgba(0, 64, 224, 0.12), transparent 35%),
     radial-gradient(circle at 80% 0%, rgba(0, 193, 253, 0.09), transparent 28%),
     #ffffff;
+}
+
+.dark .gradient-card {
+  background: radial-gradient(circle at 20% 20%, rgba(0, 64, 224, 0.18), transparent 35%),
+    radial-gradient(circle at 80% 0%, rgba(0, 193, 253, 0.12), transparent 28%),
+    #161616;
 }
 
 .surface-panel {
@@ -43,6 +57,14 @@ a:hover {
     radial-gradient(circle at top left, rgba(0, 64, 224, 0.1), transparent 34%),
     radial-gradient(circle at bottom right, rgba(0, 193, 253, 0.08), transparent 28%),
     rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(18px);
+}
+
+.dark .surface-panel {
+  background:
+    radial-gradient(circle at top left, rgba(0, 64, 224, 0.14), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(0, 193, 253, 0.1), transparent 28%),
+    rgba(22, 22, 22, 0.92);
   backdrop-filter: blur(18px);
 }
 
@@ -55,6 +77,10 @@ a:hover {
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: rgba(9, 29, 45, 0.6);
+}
+
+.dark .section-kicker {
+  color: rgba(247, 249, 255, 0.55);
 }
 
 .section-kicker::before {

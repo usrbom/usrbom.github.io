@@ -7,7 +7,7 @@ export default function Hero() {
     <div className="grid items-start gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
       <div className="space-y-8 pt-8 lg:pt-12">
         <Reveal delayMs={80}>
-          <div className="inline-flex items-center gap-2 rounded-full bg-surface-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/65 shadow-soft backdrop-blur">
+          <div className="inline-flex items-center gap-2 rounded-full bg-surface-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/65 shadow-soft backdrop-blur dark:bg-dark-surface/80 dark:text-pale-gray/65">
           <span className="h-2 w-2 rounded-full bg-signal" />
           Builder-first mindset
           </div>
@@ -15,7 +15,7 @@ export default function Hero() {
 
         <Reveal delayMs={180}>
           <div>
-          <h1 className="max-w-5xl font-heading text-5xl font-bold leading-[0.92] tracking-[-0.04em] text-charcoal md:text-6xl lg:text-7xl">
+          <h1 className="max-w-5xl font-heading text-5xl font-bold leading-[0.92] tracking-[-0.04em] text-charcoal dark:text-pale-gray md:text-6xl lg:text-7xl">
             Hi, I&apos;m Utkarsh, a customer-focused builder crafting products
             at the intersection of{" "}
             <span className="text-accent">technology, data and design.</span>
@@ -24,7 +24,7 @@ export default function Hero() {
         </Reveal>
 
         <Reveal delayMs={300}>
-          <p className="max-w-3xl text-base leading-8 text-charcoal/78 md:text-lg">
+          <p className="max-w-3xl text-base leading-8 text-charcoal/78 dark:text-pale-gray/75 md:text-lg">
           UCLA Anderson MBA candidate focused on Technology Leadership &amp;
           Product Management. Previously a Senior Software Engineer at
           ServiceNow, where I spent 6+ years building automation frameworks and
@@ -44,7 +44,7 @@ export default function Hero() {
             href="/Utkarsh_Rawat_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-md bg-surface-white/80 px-5 py-3 text-sm font-semibold text-charcoal shadow-soft ring-1 ring-accent/10 transition hover:-translate-y-0.5"
+            className="rounded-md bg-surface-white/80 px-5 py-3 text-sm font-semibold text-charcoal shadow-soft ring-1 ring-accent/10 transition hover:-translate-y-0.5 dark:bg-dark-surface/80 dark:text-pale-gray dark:ring-pale-gray/10"
           >
             View resume
           </Link>
@@ -52,7 +52,7 @@ export default function Hero() {
         </Reveal>
 
         <Reveal delayMs={520}>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-charcoal/50">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-charcoal/50 dark:text-pale-gray/45">
           AI · Product strategy · Prototyping · Enterprise software · GenAI
           </p>
         </Reveal>
@@ -63,7 +63,7 @@ export default function Hero() {
         className="relative flex justify-center pt-6 lg:justify-end lg:pt-28"
       >
         <div className="surface-panel relative w-full max-w-sm overflow-hidden rounded-[2rem] p-4 shadow-float">
-          <div className="relative aspect-[0.9] overflow-hidden rounded-[1.6rem] bg-surface-low">
+          <div className="relative aspect-[0.9] overflow-hidden rounded-[1.6rem] bg-surface-low dark:bg-dark-surface-high">
             <Image
               src="/utkarsh-cropped-tieless.png"
               alt="Utkarsh Rawat headshot"

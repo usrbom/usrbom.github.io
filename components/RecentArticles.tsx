@@ -10,10 +10,10 @@ export default function RecentArticles() {
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div className="space-y-3">
           <p className="section-kicker">Thinking in public</p>
-          <h2 className="font-heading text-3xl font-bold tracking-[-0.03em] text-charcoal md:text-4xl">
+          <h2 className="font-heading text-3xl font-bold tracking-[-0.03em] text-charcoal dark:text-pale-gray md:text-4xl">
             Recent Articles
           </h2>
-          <p className="max-w-2xl text-base leading-7 text-charcoal/74">
+          <p className="max-w-2xl text-base leading-7 text-charcoal/74 dark:text-pale-gray/72">
             Notes on AI systems, product thinking, and building practical tools
             that earn user trust.
           </p>

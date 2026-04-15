@@ -26,7 +26,7 @@ function renderBlock(block: ArticleContentBlock, index: number) {
       return (
         <h2
           key={`${block.type}-${index}`}
-          className="pt-4 font-heading text-2xl font-semibold tracking-tight text-charcoal"
+          className="pt-4 font-heading text-2xl font-semibold tracking-tight text-charcoal dark:text-pale-gray"
         >
           {block.text}
         </h2>
@@ -35,7 +35,7 @@ function renderBlock(block: ArticleContentBlock, index: number) {
       return (
         <ul
           key={`${block.type}-${index}`}
-          className="space-y-3 pl-5 text-base leading-8 text-charcoal/82 marker:text-accent"
+          className="space-y-3 pl-5 text-base leading-8 text-charcoal/82 marker:text-accent dark:text-pale-gray/80"
         >
           {block.items.map((item) => (
             <li key={item}>{item}</li>
@@ -46,7 +46,7 @@ function renderBlock(block: ArticleContentBlock, index: number) {
       return (
         <blockquote
           key={`${block.type}-${index}`}
-          className="rounded-3xl border border-white/80 bg-white/70 px-6 py-5 font-heading text-xl leading-relaxed text-charcoal shadow-soft"
+          className="rounded-3xl border border-white/80 bg-white/70 px-6 py-5 font-heading text-xl leading-relaxed text-charcoal shadow-soft dark:border-white/10 dark:bg-white/5 dark:text-pale-gray"
         >
           {block.text}
         </blockquote>
@@ -55,7 +55,7 @@ function renderBlock(block: ArticleContentBlock, index: number) {
       return (
         <p
           key={`${block.type}-${index}`}
-          className="text-base leading-8 text-charcoal/82"
+          className="text-base leading-8 text-charcoal/82 dark:text-pale-gray/80"
         >
           {block.text}
         </p>
@@ -96,7 +96,7 @@ export default function ArticleDetailPage({ params }: ArticlePageProps) {
   const relatedArticles = getRelatedArticles(article);
 
   return (
-    <main className="min-h-screen bg-pale-gray">
+    <main className="min-h-screen bg-pale-gray dark:bg-dark-bg">
       <Navbar />
       <InteractiveGridBackground interactive={false}>
         <div className="mx-auto max-w-7xl px-6 pb-24 pt-28 md:px-8 lg:pb-32 lg:pt-32">
@@ -106,26 +106,26 @@ export default function ArticleDetailPage({ params }: ArticlePageProps) {
               <div className="space-y-5">
                 <Link
                   href="/articles"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-charcoal/58 transition hover:text-accent"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-charcoal/58 transition hover:text-accent dark:text-pale-gray/55 dark:hover:text-pale-gray"
                 >
                   <span aria-hidden>←</span>
                   All articles
                 </Link>
 
                   <div className="space-y-4">
-                    <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/55">
-                      <span className="rounded-full bg-accent/10 px-3 py-1 text-accent">
+                    <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-charcoal/55 dark:text-pale-gray/50">
+                      <span className="rounded-full bg-accent/10 px-3 py-1 text-accent dark:bg-accent/20 dark:text-signal">
                         {article.category}
                       </span>
                       <span>{formatArticleDate(article.publishedAt)}</span>
                       <span>{article.readingTime}</span>
                     </div>
 
-                    <h1 className="max-w-4xl font-heading text-4xl font-bold tracking-[-0.03em] text-charcoal md:text-5xl">
+                    <h1 className="max-w-4xl font-heading text-4xl font-bold tracking-[-0.03em] text-charcoal dark:text-pale-gray md:text-5xl">
                       {article.title}
                     </h1>
 
-                    <p className="max-w-3xl text-lg leading-8 text-charcoal/72">
+                    <p className="max-w-3xl text-lg leading-8 text-charcoal/72 dark:text-pale-gray/70">
                       {article.summary}
                     </p>
                   </div>
@@ -137,7 +137,7 @@ export default function ArticleDetailPage({ params }: ArticlePageProps) {
 
                 {article.image ? (
                   <figure className="space-y-3 pt-4">
-                    <div className="overflow-hidden rounded-[1.5rem] border border-white/80 bg-white shadow-soft">
+                    <div className="overflow-hidden rounded-[1.5rem] border border-white/80 bg-white shadow-soft dark:border-white/10 dark:bg-dark-surface">
                       <Image
                         src={article.image.src}
                         alt={article.image.alt}
@@ -147,7 +147,7 @@ export default function ArticleDetailPage({ params }: ArticlePageProps) {
                       />
                     </div>
                     {article.image.caption ? (
-                      <figcaption className="text-sm text-charcoal/60">
+                      <figcaption className="text-sm text-charcoal/60 dark:text-pale-gray/50">
                         {article.image.caption}
                       </figcaption>
                     ) : null}
@@ -164,10 +164,10 @@ export default function ArticleDetailPage({ params }: ArticlePageProps) {
               <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
                 <div className="surface-panel space-y-5 rounded-[2rem] p-6 shadow-soft md:p-7">
                   <div className="space-y-2">
-                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-charcoal/50">
+                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-charcoal/50 dark:text-pale-gray/45">
                       Related
                     </p>
-                    <h2 className="font-heading text-xl font-semibold tracking-tight text-charcoal">
+                    <h2 className="font-heading text-xl font-semibold tracking-tight text-charcoal dark:text-pale-gray">
                       More in {article.category}
                     </h2>
                   </div>
