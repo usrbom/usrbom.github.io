@@ -96,7 +96,7 @@ export default function Contact() {
             roles, I&apos;m happy to compare notes.
           </p>
           <Link
-            href="https://calendly.com/utkarshrawat-g/30min"
+            href="https://calendar.app.google/Ze3bGtZEqfEZgzmR6"
             className="mt-6 inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-semibold text-accent shadow-soft transition hover:-translate-y-0.5"
           >
             Book a 30-min chat
